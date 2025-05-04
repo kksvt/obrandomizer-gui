@@ -30,19 +30,31 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tabs = new System.Windows.Forms.TabControl();
-            this.tabSettings = new System.Windows.Forms.TabPage();
-            this.groupCreatures = new System.Windows.Forms.GroupBox();
-            this.groupUseEssentialCreatures = new System.Windows.Forms.GroupBox();
-            this.radioUseEssentialCreaturesYes = new System.Windows.Forms.RadioButton();
-            this.radioUseEssentialCreaturesNo = new System.Windows.Forms.RadioButton();
-            this.groupExcludeHorses = new System.Windows.Forms.GroupBox();
-            this.radioExcludeHorsesYes = new System.Windows.Forms.RadioButton();
-            this.radioExcludeHorsesNo = new System.Windows.Forms.RadioButton();
-            this.groupMiscRandCreatures = new System.Windows.Forms.GroupBox();
-            this.radioRandCreaturesUnstable = new System.Windows.Forms.RadioButton();
-            this.radioRandCreaturesEnabled = new System.Windows.Forms.RadioButton();
-            this.radioRandCreaturesDisabled = new System.Windows.Forms.RadioButton();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tabMiscSettings = new System.Windows.Forms.TabPage();
+            this.groupMisc = new System.Windows.Forms.GroupBox();
+            this.groupMiscSeed = new System.Windows.Forms.GroupBox();
+            this.buttonRandSeed = new System.Windows.Forms.Button();
+            this.textBoxMiscSeed = new System.Windows.Forms.TextBox();
+            this.groupMiscPatches = new System.Windows.Forms.GroupBox();
+            this.checkInvalidCreatureDataPatch = new System.Windows.Forms.CheckBox();
+            this.checkInvalidTexturePatch = new System.Windows.Forms.CheckBox();
+            this.groupMiscHitEffect = new System.Windows.Forms.GroupBox();
+            this.numericHitEffect = new System.Windows.Forms.NumericUpDown();
+            this.groupMiscDelayStart = new System.Windows.Forms.GroupBox();
+            this.radioDelayStartNo = new System.Windows.Forms.RadioButton();
+            this.radioDelayStartYes = new System.Windows.Forms.RadioButton();
+            this.groupMiscQuestObjects = new System.Windows.Forms.GroupBox();
+            this.radioExcludeQuestYes = new System.Windows.Forms.RadioButton();
+            this.radioExcludeQuestNo = new System.Windows.Forms.RadioButton();
+            this.groupMiscSpells = new System.Windows.Forms.GroupBox();
+            this.radioSpells2 = new System.Windows.Forms.RadioButton();
+            this.radioSpellsDisabled = new System.Windows.Forms.RadioButton();
+            this.radioSpells1 = new System.Windows.Forms.RadioButton();
+            this.tabLootSettings = new System.Windows.Forms.TabPage();
+            this.groupLoot = new System.Windows.Forms.GroupBox();
+            this.groupLootExcludeUnplayableItems = new System.Windows.Forms.GroupBox();
+            this.radioLootExcludeUnplayableYes = new System.Windows.Forms.RadioButton();
+            this.radioLootExcludeUnplayableNo = new System.Windows.Forms.RadioButton();
             this.groupLootGold = new System.Windows.Forms.GroupBox();
             this.radioLootRandGoldNo = new System.Windows.Forms.RadioButton();
             this.radioLootRandGoldYes = new System.Windows.Forms.RadioButton();
@@ -66,7 +78,8 @@
             this.radioRandActorInventoryAggressive = new System.Windows.Forms.RadioButton();
             this.radioRandActorInventoryEnabled = new System.Windows.Forms.RadioButton();
             this.radioRandActorInventoryDisabled = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.tabActorSettings = new System.Windows.Forms.TabPage();
+            this.groupActors = new System.Windows.Forms.GroupBox();
             this.groupNPCActorScaling = new System.Windows.Forms.GroupBox();
             this.checkActorScaling = new System.Windows.Forms.CheckBox();
             this.panelActorScaling = new System.Windows.Forms.Panel();
@@ -83,50 +96,29 @@
             this.radioAttribDisabled = new System.Windows.Forms.RadioButton();
             this.groupNPCVampire = new System.Windows.Forms.GroupBox();
             this.numericVampire = new System.Windows.Forms.NumericUpDown();
-            this.groupMisc = new System.Windows.Forms.GroupBox();
-            this.groupMiscSeed = new System.Windows.Forms.GroupBox();
-            this.buttonRandSeed = new System.Windows.Forms.Button();
-            this.textBoxMiscSeed = new System.Windows.Forms.TextBox();
-            this.groupMiscPatches = new System.Windows.Forms.GroupBox();
-            this.checkInvalidCreatureDataPatch = new System.Windows.Forms.CheckBox();
-            this.checkInvalidTexturePatch = new System.Windows.Forms.CheckBox();
-            this.groupMiscHitEffect = new System.Windows.Forms.GroupBox();
-            this.numericHitEffect = new System.Windows.Forms.NumericUpDown();
-            this.groupMiscDelayStart = new System.Windows.Forms.GroupBox();
-            this.radioDelayStartNo = new System.Windows.Forms.RadioButton();
-            this.radioDelayStartYes = new System.Windows.Forms.RadioButton();
-            this.groupMiscQuestObjects = new System.Windows.Forms.GroupBox();
-            this.radioExcludeQuestYes = new System.Windows.Forms.RadioButton();
-            this.radioExcludeQuestNo = new System.Windows.Forms.RadioButton();
-            this.groupMiscSpells = new System.Windows.Forms.GroupBox();
-            this.radioSpells2 = new System.Windows.Forms.RadioButton();
-            this.radioSpellsDisabled = new System.Windows.Forms.RadioButton();
-            this.radioSpells1 = new System.Windows.Forms.RadioButton();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabCreatureSettings = new System.Windows.Forms.TabPage();
+            this.groupCreatures = new System.Windows.Forms.GroupBox();
+            this.groupUseEssentialCreatures = new System.Windows.Forms.GroupBox();
+            this.radioUseEssentialCreaturesYes = new System.Windows.Forms.RadioButton();
+            this.radioUseEssentialCreaturesNo = new System.Windows.Forms.RadioButton();
+            this.groupExcludeHorses = new System.Windows.Forms.GroupBox();
+            this.radioExcludeHorsesYes = new System.Windows.Forms.RadioButton();
+            this.radioExcludeHorsesNo = new System.Windows.Forms.RadioButton();
+            this.groupMiscRandCreatures = new System.Windows.Forms.GroupBox();
+            this.radioRandCreaturesUnstable = new System.Windows.Forms.RadioButton();
+            this.radioRandCreaturesEnabled = new System.Windows.Forms.RadioButton();
+            this.radioRandCreaturesDisabled = new System.Windows.Forms.RadioButton();
             this.textBoxHelp = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
             this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.comboTemplates = new System.Windows.Forms.ComboBox();
+            this.labelTemplates = new System.Windows.Forms.Label();
+            this.buttonSaveTemplate = new System.Windows.Forms.Button();
+            this.buttonLoadTemplate = new System.Windows.Forms.Button();
+            this.buttonDeleteTemplate = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
-            this.tabSettings.SuspendLayout();
-            this.groupCreatures.SuspendLayout();
-            this.groupUseEssentialCreatures.SuspendLayout();
-            this.groupExcludeHorses.SuspendLayout();
-            this.groupMiscRandCreatures.SuspendLayout();
-            this.groupBox3.SuspendLayout();
-            this.groupLootGold.SuspendLayout();
-            this.groupLootDeathItem.SuspendLayout();
-            this.groupLootAddItem.SuspendLayout();
-            this.groupLootWorldItem.SuspendLayout();
-            this.groupLootRandChestInventory.SuspendLayout();
-            this.groupLootRandActorInventory.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupNPCActorScaling.SuspendLayout();
-            this.panelActorScaling.SuspendLayout();
-            this.groupNPCRestoreAttributes.SuspendLayout();
-            this.groupNPCRandomizeAttributes.SuspendLayout();
-            this.groupNPCVampire.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericVampire)).BeginInit();
+            this.tabMiscSettings.SuspendLayout();
             this.groupMisc.SuspendLayout();
             this.groupMiscSeed.SuspendLayout();
             this.groupMiscPatches.SuspendLayout();
@@ -135,178 +127,344 @@
             this.groupMiscDelayStart.SuspendLayout();
             this.groupMiscQuestObjects.SuspendLayout();
             this.groupMiscSpells.SuspendLayout();
+            this.tabLootSettings.SuspendLayout();
+            this.groupLoot.SuspendLayout();
+            this.groupLootExcludeUnplayableItems.SuspendLayout();
+            this.groupLootGold.SuspendLayout();
+            this.groupLootDeathItem.SuspendLayout();
+            this.groupLootAddItem.SuspendLayout();
+            this.groupLootWorldItem.SuspendLayout();
+            this.groupLootRandChestInventory.SuspendLayout();
+            this.groupLootRandActorInventory.SuspendLayout();
+            this.tabActorSettings.SuspendLayout();
+            this.groupActors.SuspendLayout();
+            this.groupNPCActorScaling.SuspendLayout();
+            this.panelActorScaling.SuspendLayout();
+            this.groupNPCRestoreAttributes.SuspendLayout();
+            this.groupNPCRandomizeAttributes.SuspendLayout();
+            this.groupNPCVampire.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericVampire)).BeginInit();
+            this.tabCreatureSettings.SuspendLayout();
+            this.groupCreatures.SuspendLayout();
+            this.groupUseEssentialCreatures.SuspendLayout();
+            this.groupExcludeHorses.SuspendLayout();
+            this.groupMiscRandCreatures.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // tabs
             // 
-            this.tabs.Controls.Add(this.tabSettings);
-            this.tabs.Controls.Add(this.tabPage2);
+            this.tabs.Controls.Add(this.tabMiscSettings);
+            this.tabs.Controls.Add(this.tabLootSettings);
+            this.tabs.Controls.Add(this.tabActorSettings);
+            this.tabs.Controls.Add(this.tabCreatureSettings);
             this.tabs.Location = new System.Drawing.Point(12, 12);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(676, 764);
+            this.tabs.Size = new System.Drawing.Size(676, 362);
             this.tabs.TabIndex = 0;
             // 
-            // tabSettings
+            // tabMiscSettings
             // 
-            this.tabSettings.Controls.Add(this.groupCreatures);
-            this.tabSettings.Controls.Add(this.groupBox3);
-            this.tabSettings.Controls.Add(this.groupBox2);
-            this.tabSettings.Controls.Add(this.groupMisc);
-            this.tabSettings.Location = new System.Drawing.Point(4, 22);
-            this.tabSettings.Name = "tabSettings";
-            this.tabSettings.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSettings.Size = new System.Drawing.Size(668, 738);
-            this.tabSettings.TabIndex = 0;
-            this.tabSettings.Text = "Mod settings";
-            this.tabSettings.UseVisualStyleBackColor = true;
+            this.tabMiscSettings.Controls.Add(this.groupMisc);
+            this.tabMiscSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabMiscSettings.Name = "tabMiscSettings";
+            this.tabMiscSettings.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMiscSettings.Size = new System.Drawing.Size(668, 336);
+            this.tabMiscSettings.TabIndex = 0;
+            this.tabMiscSettings.Text = "Misc settings";
+            this.tabMiscSettings.UseVisualStyleBackColor = true;
             // 
-            // groupCreatures
+            // groupMisc
             // 
-            this.groupCreatures.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupCreatures.Controls.Add(this.groupUseEssentialCreatures);
-            this.groupCreatures.Controls.Add(this.groupExcludeHorses);
-            this.groupCreatures.Controls.Add(this.groupMiscRandCreatures);
-            this.groupCreatures.Location = new System.Drawing.Point(6, 600);
-            this.groupCreatures.Name = "groupCreatures";
-            this.groupCreatures.Size = new System.Drawing.Size(656, 124);
-            this.groupCreatures.TabIndex = 3;
-            this.groupCreatures.TabStop = false;
-            this.groupCreatures.Text = "Creatures";
+            this.groupMisc.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupMisc.Controls.Add(this.groupMiscSeed);
+            this.groupMisc.Controls.Add(this.groupMiscPatches);
+            this.groupMisc.Controls.Add(this.groupMiscHitEffect);
+            this.groupMisc.Controls.Add(this.groupMiscDelayStart);
+            this.groupMisc.Controls.Add(this.groupMiscQuestObjects);
+            this.groupMisc.Controls.Add(this.groupMiscSpells);
+            this.groupMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.groupMisc.Location = new System.Drawing.Point(6, 6);
+            this.groupMisc.Name = "groupMisc";
+            this.groupMisc.Size = new System.Drawing.Size(656, 186);
+            this.groupMisc.TabIndex = 0;
+            this.groupMisc.TabStop = false;
+            this.groupMisc.Text = "Misc";
             // 
-            // groupUseEssentialCreatures
+            // groupMiscSeed
             // 
-            this.groupUseEssentialCreatures.Controls.Add(this.radioUseEssentialCreaturesYes);
-            this.groupUseEssentialCreatures.Controls.Add(this.radioUseEssentialCreaturesNo);
-            this.groupUseEssentialCreatures.Location = new System.Drawing.Point(234, 19);
-            this.groupUseEssentialCreatures.Name = "groupUseEssentialCreatures";
-            this.groupUseEssentialCreatures.Size = new System.Drawing.Size(188, 61);
-            this.groupUseEssentialCreatures.TabIndex = 12;
-            this.groupUseEssentialCreatures.TabStop = false;
-            this.groupUseEssentialCreatures.Text = "Use essential creatures";
-            this.groupUseEssentialCreatures.MouseHover += new System.EventHandler(this.groupUseEssentialCreatures_MouseHover);
+            this.groupMiscSeed.Controls.Add(this.buttonRandSeed);
+            this.groupMiscSeed.Controls.Add(this.textBoxMiscSeed);
+            this.groupMiscSeed.Location = new System.Drawing.Point(6, 20);
+            this.groupMiscSeed.Name = "groupMiscSeed";
+            this.groupMiscSeed.Size = new System.Drawing.Size(188, 62);
+            this.groupMiscSeed.TabIndex = 7;
+            this.groupMiscSeed.TabStop = false;
+            this.groupMiscSeed.Tag = "";
+            this.groupMiscSeed.Text = "Seed";
+            this.groupMiscSeed.MouseHover += new System.EventHandler(this.groupMiscSeed_MouseHover);
             // 
-            // radioUseEssentialCreaturesYes
+            // buttonRandSeed
             // 
-            this.radioUseEssentialCreaturesYes.AutoSize = true;
-            this.radioUseEssentialCreaturesYes.Location = new System.Drawing.Point(6, 19);
-            this.radioUseEssentialCreaturesYes.Name = "radioUseEssentialCreaturesYes";
-            this.radioUseEssentialCreaturesYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioUseEssentialCreaturesYes.Size = new System.Drawing.Size(43, 17);
-            this.radioUseEssentialCreaturesYes.TabIndex = 0;
-            this.radioUseEssentialCreaturesYes.Text = "Yes";
-            this.radioUseEssentialCreaturesYes.UseVisualStyleBackColor = true;
+            this.buttonRandSeed.Location = new System.Drawing.Point(6, 19);
+            this.buttonRandSeed.Name = "buttonRandSeed";
+            this.buttonRandSeed.Size = new System.Drawing.Size(52, 23);
+            this.buttonRandSeed.TabIndex = 1;
+            this.buttonRandSeed.Text = "New";
+            this.buttonRandSeed.UseVisualStyleBackColor = true;
+            this.buttonRandSeed.Click += new System.EventHandler(this.buttonRandSeed_Click);
             // 
-            // radioUseEssentialCreaturesNo
+            // textBoxMiscSeed
             // 
-            this.radioUseEssentialCreaturesNo.AutoSize = true;
-            this.radioUseEssentialCreaturesNo.Checked = true;
-            this.radioUseEssentialCreaturesNo.Location = new System.Drawing.Point(6, 38);
-            this.radioUseEssentialCreaturesNo.Name = "radioUseEssentialCreaturesNo";
-            this.radioUseEssentialCreaturesNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioUseEssentialCreaturesNo.Size = new System.Drawing.Size(39, 17);
-            this.radioUseEssentialCreaturesNo.TabIndex = 1;
-            this.radioUseEssentialCreaturesNo.TabStop = true;
-            this.radioUseEssentialCreaturesNo.Text = "No";
-            this.radioUseEssentialCreaturesNo.UseVisualStyleBackColor = true;
+            this.textBoxMiscSeed.Location = new System.Drawing.Point(69, 21);
+            this.textBoxMiscSeed.Name = "textBoxMiscSeed";
+            this.textBoxMiscSeed.Size = new System.Drawing.Size(100, 20);
+            this.textBoxMiscSeed.TabIndex = 0;
             // 
-            // groupExcludeHorses
+            // groupMiscPatches
             // 
-            this.groupExcludeHorses.Controls.Add(this.radioExcludeHorsesYes);
-            this.groupExcludeHorses.Controls.Add(this.radioExcludeHorsesNo);
-            this.groupExcludeHorses.Location = new System.Drawing.Point(462, 19);
-            this.groupExcludeHorses.Name = "groupExcludeHorses";
-            this.groupExcludeHorses.Size = new System.Drawing.Size(188, 61);
-            this.groupExcludeHorses.TabIndex = 11;
-            this.groupExcludeHorses.TabStop = false;
-            this.groupExcludeHorses.Text = "Exclude horses";
-            this.groupExcludeHorses.MouseHover += new System.EventHandler(this.groupExcludeHorses_MouseHover);
+            this.groupMiscPatches.Controls.Add(this.checkInvalidCreatureDataPatch);
+            this.groupMiscPatches.Controls.Add(this.checkInvalidTexturePatch);
+            this.groupMiscPatches.Location = new System.Drawing.Point(235, 88);
+            this.groupMiscPatches.Name = "groupMiscPatches";
+            this.groupMiscPatches.Size = new System.Drawing.Size(187, 69);
+            this.groupMiscPatches.TabIndex = 6;
+            this.groupMiscPatches.TabStop = false;
+            this.groupMiscPatches.Text = "Enable anti-crash patches";
+            this.groupMiscPatches.MouseHover += new System.EventHandler(this.groupMiscPatches_MouseHover);
             // 
-            // radioExcludeHorsesYes
+            // checkInvalidCreatureDataPatch
             // 
-            this.radioExcludeHorsesYes.AutoSize = true;
-            this.radioExcludeHorsesYes.Checked = true;
-            this.radioExcludeHorsesYes.Location = new System.Drawing.Point(6, 19);
-            this.radioExcludeHorsesYes.Name = "radioExcludeHorsesYes";
-            this.radioExcludeHorsesYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioExcludeHorsesYes.Size = new System.Drawing.Size(119, 17);
-            this.radioExcludeHorsesYes.TabIndex = 0;
-            this.radioExcludeHorsesYes.TabStop = true;
-            this.radioExcludeHorsesYes.Text = "Yes (recommended)";
-            this.radioExcludeHorsesYes.UseVisualStyleBackColor = true;
+            this.checkInvalidCreatureDataPatch.AutoSize = true;
+            this.checkInvalidCreatureDataPatch.Location = new System.Drawing.Point(7, 40);
+            this.checkInvalidCreatureDataPatch.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
+            this.checkInvalidCreatureDataPatch.Name = "checkInvalidCreatureDataPatch";
+            this.checkInvalidCreatureDataPatch.Size = new System.Drawing.Size(120, 17);
+            this.checkInvalidCreatureDataPatch.TabIndex = 1;
+            this.checkInvalidCreatureDataPatch.Text = "Creature data patch";
+            this.checkInvalidCreatureDataPatch.UseVisualStyleBackColor = true;
             // 
-            // radioExcludeHorsesNo
+            // checkInvalidTexturePatch
             // 
-            this.radioExcludeHorsesNo.AutoSize = true;
-            this.radioExcludeHorsesNo.Location = new System.Drawing.Point(6, 38);
-            this.radioExcludeHorsesNo.Name = "radioExcludeHorsesNo";
-            this.radioExcludeHorsesNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioExcludeHorsesNo.Size = new System.Drawing.Size(39, 17);
-            this.radioExcludeHorsesNo.TabIndex = 1;
-            this.radioExcludeHorsesNo.Text = "No";
-            this.radioExcludeHorsesNo.UseVisualStyleBackColor = true;
+            this.checkInvalidTexturePatch.AutoSize = true;
+            this.checkInvalidTexturePatch.Location = new System.Drawing.Point(7, 19);
+            this.checkInvalidTexturePatch.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
+            this.checkInvalidTexturePatch.Name = "checkInvalidTexturePatch";
+            this.checkInvalidTexturePatch.Size = new System.Drawing.Size(122, 17);
+            this.checkInvalidTexturePatch.TabIndex = 0;
+            this.checkInvalidTexturePatch.Text = "Invalid texture patch";
+            this.checkInvalidTexturePatch.UseVisualStyleBackColor = true;
             // 
-            // groupMiscRandCreatures
+            // groupMiscHitEffect
             // 
-            this.groupMiscRandCreatures.Controls.Add(this.radioRandCreaturesUnstable);
-            this.groupMiscRandCreatures.Controls.Add(this.radioRandCreaturesEnabled);
-            this.groupMiscRandCreatures.Controls.Add(this.radioRandCreaturesDisabled);
-            this.groupMiscRandCreatures.Location = new System.Drawing.Point(6, 19);
-            this.groupMiscRandCreatures.Name = "groupMiscRandCreatures";
-            this.groupMiscRandCreatures.Size = new System.Drawing.Size(187, 90);
-            this.groupMiscRandCreatures.TabIndex = 10;
-            this.groupMiscRandCreatures.TabStop = false;
-            this.groupMiscRandCreatures.Text = "Creature randomziation";
-            this.groupMiscRandCreatures.MouseHover += new System.EventHandler(this.groupMiscRandCreatures_MouseHover);
+            this.groupMiscHitEffect.Controls.Add(this.numericHitEffect);
+            this.groupMiscHitEffect.Location = new System.Drawing.Point(461, 19);
+            this.groupMiscHitEffect.Name = "groupMiscHitEffect";
+            this.groupMiscHitEffect.Size = new System.Drawing.Size(187, 53);
+            this.groupMiscHitEffect.TabIndex = 5;
+            this.groupMiscHitEffect.TabStop = false;
+            this.groupMiscHitEffect.Text = "Hit effect chance (%)";
+            this.groupMiscHitEffect.MouseHover += new System.EventHandler(this.groupMiscHitEffect_MouseHover);
             // 
-            // radioRandCreaturesUnstable
+            // numericHitEffect
             // 
-            this.radioRandCreaturesUnstable.AutoSize = true;
-            this.radioRandCreaturesUnstable.Location = new System.Drawing.Point(7, 59);
-            this.radioRandCreaturesUnstable.Name = "radioRandCreaturesUnstable";
-            this.radioRandCreaturesUnstable.Size = new System.Drawing.Size(110, 17);
-            this.radioRandCreaturesUnstable.TabIndex = 2;
-            this.radioRandCreaturesUnstable.Text = "Enabled, unstable";
-            this.radioRandCreaturesUnstable.UseVisualStyleBackColor = true;
+            this.numericHitEffect.Increment = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.numericHitEffect.Location = new System.Drawing.Point(7, 19);
+            this.numericHitEffect.Name = "numericHitEffect";
+            this.numericHitEffect.Size = new System.Drawing.Size(120, 20);
+            this.numericHitEffect.TabIndex = 0;
+            this.numericHitEffect.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
             // 
-            // radioRandCreaturesEnabled
+            // groupMiscDelayStart
             // 
-            this.radioRandCreaturesEnabled.AutoSize = true;
-            this.radioRandCreaturesEnabled.Checked = true;
-            this.radioRandCreaturesEnabled.Location = new System.Drawing.Point(7, 39);
-            this.radioRandCreaturesEnabled.Name = "radioRandCreaturesEnabled";
-            this.radioRandCreaturesEnabled.Size = new System.Drawing.Size(101, 17);
-            this.radioRandCreaturesEnabled.TabIndex = 1;
-            this.radioRandCreaturesEnabled.TabStop = true;
-            this.radioRandCreaturesEnabled.Text = "Enabled, normal";
-            this.radioRandCreaturesEnabled.UseVisualStyleBackColor = true;
+            this.groupMiscDelayStart.Controls.Add(this.radioDelayStartNo);
+            this.groupMiscDelayStart.Controls.Add(this.radioDelayStartYes);
+            this.groupMiscDelayStart.Location = new System.Drawing.Point(235, 19);
+            this.groupMiscDelayStart.Name = "groupMiscDelayStart";
+            this.groupMiscDelayStart.Size = new System.Drawing.Size(187, 63);
+            this.groupMiscDelayStart.TabIndex = 4;
+            this.groupMiscDelayStart.TabStop = false;
+            this.groupMiscDelayStart.Text = "Delay start";
+            this.groupMiscDelayStart.MouseHover += new System.EventHandler(this.groupMiscDelayStart_MouseHover);
             // 
-            // radioRandCreaturesDisabled
+            // radioDelayStartNo
             // 
-            this.radioRandCreaturesDisabled.AutoSize = true;
-            this.radioRandCreaturesDisabled.Location = new System.Drawing.Point(7, 20);
-            this.radioRandCreaturesDisabled.Name = "radioRandCreaturesDisabled";
-            this.radioRandCreaturesDisabled.Size = new System.Drawing.Size(66, 17);
-            this.radioRandCreaturesDisabled.TabIndex = 0;
-            this.radioRandCreaturesDisabled.Text = "Disabled";
-            this.radioRandCreaturesDisabled.UseVisualStyleBackColor = true;
+            this.radioDelayStartNo.AutoSize = true;
+            this.radioDelayStartNo.Checked = true;
+            this.radioDelayStartNo.Location = new System.Drawing.Point(7, 39);
+            this.radioDelayStartNo.Name = "radioDelayStartNo";
+            this.radioDelayStartNo.Size = new System.Drawing.Size(39, 17);
+            this.radioDelayStartNo.TabIndex = 1;
+            this.radioDelayStartNo.TabStop = true;
+            this.radioDelayStartNo.Text = "No";
+            this.radioDelayStartNo.UseVisualStyleBackColor = true;
             // 
-            // groupBox3
+            // radioDelayStartYes
             // 
-            this.groupBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox3.Controls.Add(this.groupLootGold);
-            this.groupBox3.Controls.Add(this.groupLootDeathItem);
-            this.groupBox3.Controls.Add(this.groupLootAddItem);
-            this.groupBox3.Controls.Add(this.groupLootWorldItem);
-            this.groupBox3.Controls.Add(this.groupLootRandChestInventory);
-            this.groupBox3.Controls.Add(this.groupLootRandActorInventory);
-            this.groupBox3.Location = new System.Drawing.Point(6, 198);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(656, 227);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Loot";
+            this.radioDelayStartYes.AutoSize = true;
+            this.radioDelayStartYes.Location = new System.Drawing.Point(7, 20);
+            this.radioDelayStartYes.Name = "radioDelayStartYes";
+            this.radioDelayStartYes.Size = new System.Drawing.Size(43, 17);
+            this.radioDelayStartYes.TabIndex = 0;
+            this.radioDelayStartYes.Text = "Yes";
+            this.radioDelayStartYes.UseVisualStyleBackColor = true;
+            // 
+            // groupMiscQuestObjects
+            // 
+            this.groupMiscQuestObjects.Controls.Add(this.radioExcludeQuestYes);
+            this.groupMiscQuestObjects.Controls.Add(this.radioExcludeQuestNo);
+            this.groupMiscQuestObjects.Location = new System.Drawing.Point(6, 88);
+            this.groupMiscQuestObjects.Name = "groupMiscQuestObjects";
+            this.groupMiscQuestObjects.Size = new System.Drawing.Size(188, 69);
+            this.groupMiscQuestObjects.TabIndex = 3;
+            this.groupMiscQuestObjects.TabStop = false;
+            this.groupMiscQuestObjects.Text = "Exclude quest objects";
+            this.groupMiscQuestObjects.MouseHover += new System.EventHandler(this.groupMiscQuestObjects_MouseHover);
+            // 
+            // radioExcludeQuestYes
+            // 
+            this.radioExcludeQuestYes.AutoSize = true;
+            this.radioExcludeQuestYes.Checked = true;
+            this.radioExcludeQuestYes.Location = new System.Drawing.Point(6, 19);
+            this.radioExcludeQuestYes.Name = "radioExcludeQuestYes";
+            this.radioExcludeQuestYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioExcludeQuestYes.Size = new System.Drawing.Size(43, 17);
+            this.radioExcludeQuestYes.TabIndex = 0;
+            this.radioExcludeQuestYes.TabStop = true;
+            this.radioExcludeQuestYes.Text = "Yes";
+            this.radioExcludeQuestYes.UseVisualStyleBackColor = true;
+            // 
+            // radioExcludeQuestNo
+            // 
+            this.radioExcludeQuestNo.AutoSize = true;
+            this.radioExcludeQuestNo.Location = new System.Drawing.Point(6, 38);
+            this.radioExcludeQuestNo.Name = "radioExcludeQuestNo";
+            this.radioExcludeQuestNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioExcludeQuestNo.Size = new System.Drawing.Size(39, 17);
+            this.radioExcludeQuestNo.TabIndex = 1;
+            this.radioExcludeQuestNo.Text = "No";
+            this.radioExcludeQuestNo.UseVisualStyleBackColor = true;
+            // 
+            // groupMiscSpells
+            // 
+            this.groupMiscSpells.Controls.Add(this.radioSpells2);
+            this.groupMiscSpells.Controls.Add(this.radioSpellsDisabled);
+            this.groupMiscSpells.Controls.Add(this.radioSpells1);
+            this.groupMiscSpells.Location = new System.Drawing.Point(461, 88);
+            this.groupMiscSpells.Name = "groupMiscSpells";
+            this.groupMiscSpells.Size = new System.Drawing.Size(187, 83);
+            this.groupMiscSpells.TabIndex = 0;
+            this.groupMiscSpells.TabStop = false;
+            this.groupMiscSpells.Text = "Spell randomization";
+            this.groupMiscSpells.MouseHover += new System.EventHandler(this.groupMiscSpells_MouseHover);
+            // 
+            // radioSpells2
+            // 
+            this.radioSpells2.AutoSize = true;
+            this.radioSpells2.Location = new System.Drawing.Point(6, 57);
+            this.radioSpells2.Name = "radioSpells2";
+            this.radioSpells2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioSpells2.Size = new System.Drawing.Size(117, 17);
+            this.radioSpells2.TabIndex = 4;
+            this.radioSpells2.Text = "Total randomization";
+            this.radioSpells2.UseVisualStyleBackColor = true;
+            // 
+            // radioSpellsDisabled
+            // 
+            this.radioSpellsDisabled.AutoSize = true;
+            this.radioSpellsDisabled.Location = new System.Drawing.Point(6, 18);
+            this.radioSpellsDisabled.Name = "radioSpellsDisabled";
+            this.radioSpellsDisabled.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioSpellsDisabled.Size = new System.Drawing.Size(66, 17);
+            this.radioSpellsDisabled.TabIndex = 2;
+            this.radioSpellsDisabled.Text = "Disabled";
+            this.radioSpellsDisabled.UseVisualStyleBackColor = true;
+            // 
+            // radioSpells1
+            // 
+            this.radioSpells1.AutoSize = true;
+            this.radioSpells1.Checked = true;
+            this.radioSpells1.Location = new System.Drawing.Point(6, 37);
+            this.radioSpells1.Name = "radioSpells1";
+            this.radioSpells1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioSpells1.Size = new System.Drawing.Size(175, 17);
+            this.radioSpells1.TabIndex = 3;
+            this.radioSpells1.TabStop = true;
+            this.radioSpells1.Text = "Randomize spell, but not school";
+            this.radioSpells1.UseVisualStyleBackColor = true;
+            // 
+            // tabLootSettings
+            // 
+            this.tabLootSettings.Controls.Add(this.groupLoot);
+            this.tabLootSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabLootSettings.Name = "tabLootSettings";
+            this.tabLootSettings.Padding = new System.Windows.Forms.Padding(3);
+            this.tabLootSettings.Size = new System.Drawing.Size(668, 336);
+            this.tabLootSettings.TabIndex = 1;
+            this.tabLootSettings.Text = "Loot settings";
+            this.tabLootSettings.UseVisualStyleBackColor = true;
+            // 
+            // groupLoot
+            // 
+            this.groupLoot.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupLoot.Controls.Add(this.groupLootExcludeUnplayableItems);
+            this.groupLoot.Controls.Add(this.groupLootGold);
+            this.groupLoot.Controls.Add(this.groupLootDeathItem);
+            this.groupLoot.Controls.Add(this.groupLootAddItem);
+            this.groupLoot.Controls.Add(this.groupLootWorldItem);
+            this.groupLoot.Controls.Add(this.groupLootRandChestInventory);
+            this.groupLoot.Controls.Add(this.groupLootRandActorInventory);
+            this.groupLoot.Location = new System.Drawing.Point(6, 6);
+            this.groupLoot.Name = "groupLoot";
+            this.groupLoot.Size = new System.Drawing.Size(656, 324);
+            this.groupLoot.TabIndex = 2;
+            this.groupLoot.TabStop = false;
+            this.groupLoot.Text = "Loot";
+            // 
+            // groupLootExcludeUnplayableItems
+            // 
+            this.groupLootExcludeUnplayableItems.Controls.Add(this.radioLootExcludeUnplayableYes);
+            this.groupLootExcludeUnplayableItems.Controls.Add(this.radioLootExcludeUnplayableNo);
+            this.groupLootExcludeUnplayableItems.Location = new System.Drawing.Point(6, 211);
+            this.groupLootExcludeUnplayableItems.Name = "groupLootExcludeUnplayableItems";
+            this.groupLootExcludeUnplayableItems.Size = new System.Drawing.Size(188, 69);
+            this.groupLootExcludeUnplayableItems.TabIndex = 17;
+            this.groupLootExcludeUnplayableItems.TabStop = false;
+            this.groupLootExcludeUnplayableItems.Text = "Exclude unplayable items";
+            this.groupLootExcludeUnplayableItems.MouseHover += new System.EventHandler(this.groupLootExcludeUnplayableItems_MouseHover);
+            // 
+            // radioLootExcludeUnplayableYes
+            // 
+            this.radioLootExcludeUnplayableYes.AutoSize = true;
+            this.radioLootExcludeUnplayableYes.Checked = true;
+            this.radioLootExcludeUnplayableYes.Location = new System.Drawing.Point(6, 19);
+            this.radioLootExcludeUnplayableYes.Name = "radioLootExcludeUnplayableYes";
+            this.radioLootExcludeUnplayableYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioLootExcludeUnplayableYes.Size = new System.Drawing.Size(43, 17);
+            this.radioLootExcludeUnplayableYes.TabIndex = 0;
+            this.radioLootExcludeUnplayableYes.TabStop = true;
+            this.radioLootExcludeUnplayableYes.Text = "Yes";
+            this.radioLootExcludeUnplayableYes.UseVisualStyleBackColor = true;
+            // 
+            // radioLootExcludeUnplayableNo
+            // 
+            this.radioLootExcludeUnplayableNo.AutoSize = true;
+            this.radioLootExcludeUnplayableNo.Location = new System.Drawing.Point(6, 38);
+            this.radioLootExcludeUnplayableNo.Name = "radioLootExcludeUnplayableNo";
+            this.radioLootExcludeUnplayableNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioLootExcludeUnplayableNo.Size = new System.Drawing.Size(39, 17);
+            this.radioLootExcludeUnplayableNo.TabIndex = 1;
+            this.radioLootExcludeUnplayableNo.Text = "No";
+            this.radioLootExcludeUnplayableNo.UseVisualStyleBackColor = true;
             // 
             // groupLootGold
             // 
@@ -567,19 +725,29 @@
             this.radioRandActorInventoryDisabled.Text = "Disabled";
             this.radioRandActorInventoryDisabled.UseVisualStyleBackColor = true;
             // 
-            // groupBox2
+            // tabActorSettings
             // 
-            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupBox2.Controls.Add(this.groupNPCActorScaling);
-            this.groupBox2.Controls.Add(this.groupNPCRestoreAttributes);
-            this.groupBox2.Controls.Add(this.groupNPCRandomizeAttributes);
-            this.groupBox2.Controls.Add(this.groupNPCVampire);
-            this.groupBox2.Location = new System.Drawing.Point(9, 431);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(656, 163);
-            this.groupBox2.TabIndex = 1;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Actor parameters";
+            this.tabActorSettings.Controls.Add(this.groupActors);
+            this.tabActorSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabActorSettings.Name = "tabActorSettings";
+            this.tabActorSettings.Size = new System.Drawing.Size(668, 336);
+            this.tabActorSettings.TabIndex = 2;
+            this.tabActorSettings.Text = "Actor settings";
+            this.tabActorSettings.UseVisualStyleBackColor = true;
+            // 
+            // groupActors
+            // 
+            this.groupActors.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupActors.Controls.Add(this.groupNPCActorScaling);
+            this.groupActors.Controls.Add(this.groupNPCRestoreAttributes);
+            this.groupActors.Controls.Add(this.groupNPCRandomizeAttributes);
+            this.groupActors.Controls.Add(this.groupNPCVampire);
+            this.groupActors.Location = new System.Drawing.Point(6, 6);
+            this.groupActors.Name = "groupActors";
+            this.groupActors.Size = new System.Drawing.Size(656, 163);
+            this.groupActors.TabIndex = 1;
+            this.groupActors.TabStop = false;
+            this.groupActors.Text = "Actor parameters";
             // 
             // groupNPCActorScaling
             // 
@@ -758,242 +926,145 @@
             0,
             0});
             // 
-            // groupMisc
+            // tabCreatureSettings
             // 
-            this.groupMisc.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.groupMisc.Controls.Add(this.groupMiscSeed);
-            this.groupMisc.Controls.Add(this.groupMiscPatches);
-            this.groupMisc.Controls.Add(this.groupMiscHitEffect);
-            this.groupMisc.Controls.Add(this.groupMiscDelayStart);
-            this.groupMisc.Controls.Add(this.groupMiscQuestObjects);
-            this.groupMisc.Controls.Add(this.groupMiscSpells);
-            this.groupMisc.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.groupMisc.Location = new System.Drawing.Point(6, 6);
-            this.groupMisc.Name = "groupMisc";
-            this.groupMisc.Size = new System.Drawing.Size(656, 186);
-            this.groupMisc.TabIndex = 0;
-            this.groupMisc.TabStop = false;
-            this.groupMisc.Text = "Misc";
+            this.tabCreatureSettings.Controls.Add(this.groupCreatures);
+            this.tabCreatureSettings.Location = new System.Drawing.Point(4, 22);
+            this.tabCreatureSettings.Name = "tabCreatureSettings";
+            this.tabCreatureSettings.Size = new System.Drawing.Size(668, 336);
+            this.tabCreatureSettings.TabIndex = 3;
+            this.tabCreatureSettings.Text = "Creature settings";
+            this.tabCreatureSettings.UseVisualStyleBackColor = true;
             // 
-            // groupMiscSeed
+            // groupCreatures
             // 
-            this.groupMiscSeed.Controls.Add(this.buttonRandSeed);
-            this.groupMiscSeed.Controls.Add(this.textBoxMiscSeed);
-            this.groupMiscSeed.Location = new System.Drawing.Point(6, 20);
-            this.groupMiscSeed.Name = "groupMiscSeed";
-            this.groupMiscSeed.Size = new System.Drawing.Size(188, 62);
-            this.groupMiscSeed.TabIndex = 7;
-            this.groupMiscSeed.TabStop = false;
-            this.groupMiscSeed.Tag = "";
-            this.groupMiscSeed.Text = "Seed";
-            this.groupMiscSeed.MouseHover += new System.EventHandler(this.groupMiscSeed_MouseHover);
+            this.groupCreatures.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.groupCreatures.Controls.Add(this.groupUseEssentialCreatures);
+            this.groupCreatures.Controls.Add(this.groupExcludeHorses);
+            this.groupCreatures.Controls.Add(this.groupMiscRandCreatures);
+            this.groupCreatures.Location = new System.Drawing.Point(6, 6);
+            this.groupCreatures.Name = "groupCreatures";
+            this.groupCreatures.Size = new System.Drawing.Size(656, 124);
+            this.groupCreatures.TabIndex = 3;
+            this.groupCreatures.TabStop = false;
+            this.groupCreatures.Text = "Creatures";
             // 
-            // buttonRandSeed
+            // groupUseEssentialCreatures
             // 
-            this.buttonRandSeed.Location = new System.Drawing.Point(6, 19);
-            this.buttonRandSeed.Name = "buttonRandSeed";
-            this.buttonRandSeed.Size = new System.Drawing.Size(52, 23);
-            this.buttonRandSeed.TabIndex = 1;
-            this.buttonRandSeed.Text = "New";
-            this.buttonRandSeed.UseVisualStyleBackColor = true;
-            this.buttonRandSeed.Click += new System.EventHandler(this.buttonRandSeed_Click);
+            this.groupUseEssentialCreatures.Controls.Add(this.radioUseEssentialCreaturesYes);
+            this.groupUseEssentialCreatures.Controls.Add(this.radioUseEssentialCreaturesNo);
+            this.groupUseEssentialCreatures.Location = new System.Drawing.Point(234, 19);
+            this.groupUseEssentialCreatures.Name = "groupUseEssentialCreatures";
+            this.groupUseEssentialCreatures.Size = new System.Drawing.Size(188, 61);
+            this.groupUseEssentialCreatures.TabIndex = 12;
+            this.groupUseEssentialCreatures.TabStop = false;
+            this.groupUseEssentialCreatures.Text = "Use essential creatures";
+            this.groupUseEssentialCreatures.MouseHover += new System.EventHandler(this.groupUseEssentialCreatures_MouseHover);
             // 
-            // textBoxMiscSeed
+            // radioUseEssentialCreaturesYes
             // 
-            this.textBoxMiscSeed.Location = new System.Drawing.Point(69, 21);
-            this.textBoxMiscSeed.Name = "textBoxMiscSeed";
-            this.textBoxMiscSeed.Size = new System.Drawing.Size(100, 20);
-            this.textBoxMiscSeed.TabIndex = 0;
+            this.radioUseEssentialCreaturesYes.AutoSize = true;
+            this.radioUseEssentialCreaturesYes.Location = new System.Drawing.Point(6, 19);
+            this.radioUseEssentialCreaturesYes.Name = "radioUseEssentialCreaturesYes";
+            this.radioUseEssentialCreaturesYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioUseEssentialCreaturesYes.Size = new System.Drawing.Size(43, 17);
+            this.radioUseEssentialCreaturesYes.TabIndex = 0;
+            this.radioUseEssentialCreaturesYes.Text = "Yes";
+            this.radioUseEssentialCreaturesYes.UseVisualStyleBackColor = true;
             // 
-            // groupMiscPatches
+            // radioUseEssentialCreaturesNo
             // 
-            this.groupMiscPatches.Controls.Add(this.checkInvalidCreatureDataPatch);
-            this.groupMiscPatches.Controls.Add(this.checkInvalidTexturePatch);
-            this.groupMiscPatches.Location = new System.Drawing.Point(235, 88);
-            this.groupMiscPatches.Name = "groupMiscPatches";
-            this.groupMiscPatches.Size = new System.Drawing.Size(187, 69);
-            this.groupMiscPatches.TabIndex = 6;
-            this.groupMiscPatches.TabStop = false;
-            this.groupMiscPatches.Text = "Enable anti-crash patches";
-            this.groupMiscPatches.MouseHover += new System.EventHandler(this.groupMiscPatches_MouseHover);
+            this.radioUseEssentialCreaturesNo.AutoSize = true;
+            this.radioUseEssentialCreaturesNo.Checked = true;
+            this.radioUseEssentialCreaturesNo.Location = new System.Drawing.Point(6, 38);
+            this.radioUseEssentialCreaturesNo.Name = "radioUseEssentialCreaturesNo";
+            this.radioUseEssentialCreaturesNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioUseEssentialCreaturesNo.Size = new System.Drawing.Size(39, 17);
+            this.radioUseEssentialCreaturesNo.TabIndex = 1;
+            this.radioUseEssentialCreaturesNo.TabStop = true;
+            this.radioUseEssentialCreaturesNo.Text = "No";
+            this.radioUseEssentialCreaturesNo.UseVisualStyleBackColor = true;
             // 
-            // checkInvalidCreatureDataPatch
+            // groupExcludeHorses
             // 
-            this.checkInvalidCreatureDataPatch.AutoSize = true;
-            this.checkInvalidCreatureDataPatch.Location = new System.Drawing.Point(7, 40);
-            this.checkInvalidCreatureDataPatch.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
-            this.checkInvalidCreatureDataPatch.Name = "checkInvalidCreatureDataPatch";
-            this.checkInvalidCreatureDataPatch.Size = new System.Drawing.Size(120, 17);
-            this.checkInvalidCreatureDataPatch.TabIndex = 1;
-            this.checkInvalidCreatureDataPatch.Text = "Creature data patch";
-            this.checkInvalidCreatureDataPatch.UseVisualStyleBackColor = true;
+            this.groupExcludeHorses.Controls.Add(this.radioExcludeHorsesYes);
+            this.groupExcludeHorses.Controls.Add(this.radioExcludeHorsesNo);
+            this.groupExcludeHorses.Location = new System.Drawing.Point(462, 19);
+            this.groupExcludeHorses.Name = "groupExcludeHorses";
+            this.groupExcludeHorses.Size = new System.Drawing.Size(188, 61);
+            this.groupExcludeHorses.TabIndex = 11;
+            this.groupExcludeHorses.TabStop = false;
+            this.groupExcludeHorses.Text = "Exclude horses";
+            this.groupExcludeHorses.MouseHover += new System.EventHandler(this.groupExcludeHorses_MouseHover);
             // 
-            // checkInvalidTexturePatch
+            // radioExcludeHorsesYes
             // 
-            this.checkInvalidTexturePatch.AutoSize = true;
-            this.checkInvalidTexturePatch.Location = new System.Drawing.Point(7, 19);
-            this.checkInvalidTexturePatch.Margin = new System.Windows.Forms.Padding(1, 3, 3, 1);
-            this.checkInvalidTexturePatch.Name = "checkInvalidTexturePatch";
-            this.checkInvalidTexturePatch.Size = new System.Drawing.Size(122, 17);
-            this.checkInvalidTexturePatch.TabIndex = 0;
-            this.checkInvalidTexturePatch.Text = "Invalid texture patch";
-            this.checkInvalidTexturePatch.UseVisualStyleBackColor = true;
+            this.radioExcludeHorsesYes.AutoSize = true;
+            this.radioExcludeHorsesYes.Checked = true;
+            this.radioExcludeHorsesYes.Location = new System.Drawing.Point(6, 19);
+            this.radioExcludeHorsesYes.Name = "radioExcludeHorsesYes";
+            this.radioExcludeHorsesYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioExcludeHorsesYes.Size = new System.Drawing.Size(119, 17);
+            this.radioExcludeHorsesYes.TabIndex = 0;
+            this.radioExcludeHorsesYes.TabStop = true;
+            this.radioExcludeHorsesYes.Text = "Yes (recommended)";
+            this.radioExcludeHorsesYes.UseVisualStyleBackColor = true;
             // 
-            // groupMiscHitEffect
+            // radioExcludeHorsesNo
             // 
-            this.groupMiscHitEffect.Controls.Add(this.numericHitEffect);
-            this.groupMiscHitEffect.Location = new System.Drawing.Point(461, 19);
-            this.groupMiscHitEffect.Name = "groupMiscHitEffect";
-            this.groupMiscHitEffect.Size = new System.Drawing.Size(187, 53);
-            this.groupMiscHitEffect.TabIndex = 5;
-            this.groupMiscHitEffect.TabStop = false;
-            this.groupMiscHitEffect.Text = "Hit effect chance (%)";
-            this.groupMiscHitEffect.MouseHover += new System.EventHandler(this.groupMiscHitEffect_MouseHover);
+            this.radioExcludeHorsesNo.AutoSize = true;
+            this.radioExcludeHorsesNo.Location = new System.Drawing.Point(6, 38);
+            this.radioExcludeHorsesNo.Name = "radioExcludeHorsesNo";
+            this.radioExcludeHorsesNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.radioExcludeHorsesNo.Size = new System.Drawing.Size(39, 17);
+            this.radioExcludeHorsesNo.TabIndex = 1;
+            this.radioExcludeHorsesNo.Text = "No";
+            this.radioExcludeHorsesNo.UseVisualStyleBackColor = true;
             // 
-            // numericHitEffect
+            // groupMiscRandCreatures
             // 
-            this.numericHitEffect.Increment = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.numericHitEffect.Location = new System.Drawing.Point(7, 19);
-            this.numericHitEffect.Name = "numericHitEffect";
-            this.numericHitEffect.Size = new System.Drawing.Size(120, 20);
-            this.numericHitEffect.TabIndex = 0;
-            this.numericHitEffect.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
+            this.groupMiscRandCreatures.Controls.Add(this.radioRandCreaturesUnstable);
+            this.groupMiscRandCreatures.Controls.Add(this.radioRandCreaturesEnabled);
+            this.groupMiscRandCreatures.Controls.Add(this.radioRandCreaturesDisabled);
+            this.groupMiscRandCreatures.Location = new System.Drawing.Point(6, 19);
+            this.groupMiscRandCreatures.Name = "groupMiscRandCreatures";
+            this.groupMiscRandCreatures.Size = new System.Drawing.Size(187, 90);
+            this.groupMiscRandCreatures.TabIndex = 10;
+            this.groupMiscRandCreatures.TabStop = false;
+            this.groupMiscRandCreatures.Text = "Creature randomziation";
+            this.groupMiscRandCreatures.MouseHover += new System.EventHandler(this.groupMiscRandCreatures_MouseHover);
             // 
-            // groupMiscDelayStart
+            // radioRandCreaturesUnstable
             // 
-            this.groupMiscDelayStart.Controls.Add(this.radioDelayStartNo);
-            this.groupMiscDelayStart.Controls.Add(this.radioDelayStartYes);
-            this.groupMiscDelayStart.Location = new System.Drawing.Point(235, 19);
-            this.groupMiscDelayStart.Name = "groupMiscDelayStart";
-            this.groupMiscDelayStart.Size = new System.Drawing.Size(187, 63);
-            this.groupMiscDelayStart.TabIndex = 4;
-            this.groupMiscDelayStart.TabStop = false;
-            this.groupMiscDelayStart.Text = "Delay start";
-            this.groupMiscDelayStart.MouseHover += new System.EventHandler(this.groupMiscDelayStart_MouseHover);
+            this.radioRandCreaturesUnstable.AutoSize = true;
+            this.radioRandCreaturesUnstable.Location = new System.Drawing.Point(7, 59);
+            this.radioRandCreaturesUnstable.Name = "radioRandCreaturesUnstable";
+            this.radioRandCreaturesUnstable.Size = new System.Drawing.Size(110, 17);
+            this.radioRandCreaturesUnstable.TabIndex = 2;
+            this.radioRandCreaturesUnstable.Text = "Enabled, unstable";
+            this.radioRandCreaturesUnstable.UseVisualStyleBackColor = true;
             // 
-            // radioDelayStartNo
+            // radioRandCreaturesEnabled
             // 
-            this.radioDelayStartNo.AutoSize = true;
-            this.radioDelayStartNo.Checked = true;
-            this.radioDelayStartNo.Location = new System.Drawing.Point(7, 39);
-            this.radioDelayStartNo.Name = "radioDelayStartNo";
-            this.radioDelayStartNo.Size = new System.Drawing.Size(39, 17);
-            this.radioDelayStartNo.TabIndex = 1;
-            this.radioDelayStartNo.TabStop = true;
-            this.radioDelayStartNo.Text = "No";
-            this.radioDelayStartNo.UseVisualStyleBackColor = true;
+            this.radioRandCreaturesEnabled.AutoSize = true;
+            this.radioRandCreaturesEnabled.Checked = true;
+            this.radioRandCreaturesEnabled.Location = new System.Drawing.Point(7, 39);
+            this.radioRandCreaturesEnabled.Name = "radioRandCreaturesEnabled";
+            this.radioRandCreaturesEnabled.Size = new System.Drawing.Size(101, 17);
+            this.radioRandCreaturesEnabled.TabIndex = 1;
+            this.radioRandCreaturesEnabled.TabStop = true;
+            this.radioRandCreaturesEnabled.Text = "Enabled, normal";
+            this.radioRandCreaturesEnabled.UseVisualStyleBackColor = true;
             // 
-            // radioDelayStartYes
+            // radioRandCreaturesDisabled
             // 
-            this.radioDelayStartYes.AutoSize = true;
-            this.radioDelayStartYes.Location = new System.Drawing.Point(7, 20);
-            this.radioDelayStartYes.Name = "radioDelayStartYes";
-            this.radioDelayStartYes.Size = new System.Drawing.Size(43, 17);
-            this.radioDelayStartYes.TabIndex = 0;
-            this.radioDelayStartYes.Text = "Yes";
-            this.radioDelayStartYes.UseVisualStyleBackColor = true;
-            // 
-            // groupMiscQuestObjects
-            // 
-            this.groupMiscQuestObjects.Controls.Add(this.radioExcludeQuestYes);
-            this.groupMiscQuestObjects.Controls.Add(this.radioExcludeQuestNo);
-            this.groupMiscQuestObjects.Location = new System.Drawing.Point(6, 88);
-            this.groupMiscQuestObjects.Name = "groupMiscQuestObjects";
-            this.groupMiscQuestObjects.Size = new System.Drawing.Size(188, 69);
-            this.groupMiscQuestObjects.TabIndex = 3;
-            this.groupMiscQuestObjects.TabStop = false;
-            this.groupMiscQuestObjects.Text = "Exclude quest objects";
-            this.groupMiscQuestObjects.MouseHover += new System.EventHandler(this.groupMiscQuestObjects_MouseHover);
-            // 
-            // radioExcludeQuestYes
-            // 
-            this.radioExcludeQuestYes.AutoSize = true;
-            this.radioExcludeQuestYes.Checked = true;
-            this.radioExcludeQuestYes.Location = new System.Drawing.Point(6, 19);
-            this.radioExcludeQuestYes.Name = "radioExcludeQuestYes";
-            this.radioExcludeQuestYes.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioExcludeQuestYes.Size = new System.Drawing.Size(43, 17);
-            this.radioExcludeQuestYes.TabIndex = 0;
-            this.radioExcludeQuestYes.TabStop = true;
-            this.radioExcludeQuestYes.Text = "Yes";
-            this.radioExcludeQuestYes.UseVisualStyleBackColor = true;
-            // 
-            // radioExcludeQuestNo
-            // 
-            this.radioExcludeQuestNo.AutoSize = true;
-            this.radioExcludeQuestNo.Location = new System.Drawing.Point(6, 38);
-            this.radioExcludeQuestNo.Name = "radioExcludeQuestNo";
-            this.radioExcludeQuestNo.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioExcludeQuestNo.Size = new System.Drawing.Size(39, 17);
-            this.radioExcludeQuestNo.TabIndex = 1;
-            this.radioExcludeQuestNo.Text = "No";
-            this.radioExcludeQuestNo.UseVisualStyleBackColor = true;
-            // 
-            // groupMiscSpells
-            // 
-            this.groupMiscSpells.Controls.Add(this.radioSpells2);
-            this.groupMiscSpells.Controls.Add(this.radioSpellsDisabled);
-            this.groupMiscSpells.Controls.Add(this.radioSpells1);
-            this.groupMiscSpells.Location = new System.Drawing.Point(461, 88);
-            this.groupMiscSpells.Name = "groupMiscSpells";
-            this.groupMiscSpells.Size = new System.Drawing.Size(187, 83);
-            this.groupMiscSpells.TabIndex = 0;
-            this.groupMiscSpells.TabStop = false;
-            this.groupMiscSpells.Text = "Spell randomization";
-            this.groupMiscSpells.MouseHover += new System.EventHandler(this.groupMiscSpells_MouseHover);
-            // 
-            // radioSpells2
-            // 
-            this.radioSpells2.AutoSize = true;
-            this.radioSpells2.Location = new System.Drawing.Point(6, 57);
-            this.radioSpells2.Name = "radioSpells2";
-            this.radioSpells2.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioSpells2.Size = new System.Drawing.Size(117, 17);
-            this.radioSpells2.TabIndex = 4;
-            this.radioSpells2.Text = "Total randomization";
-            this.radioSpells2.UseVisualStyleBackColor = true;
-            // 
-            // radioSpellsDisabled
-            // 
-            this.radioSpellsDisabled.AutoSize = true;
-            this.radioSpellsDisabled.Location = new System.Drawing.Point(6, 18);
-            this.radioSpellsDisabled.Name = "radioSpellsDisabled";
-            this.radioSpellsDisabled.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioSpellsDisabled.Size = new System.Drawing.Size(66, 17);
-            this.radioSpellsDisabled.TabIndex = 2;
-            this.radioSpellsDisabled.Text = "Disabled";
-            this.radioSpellsDisabled.UseVisualStyleBackColor = true;
-            // 
-            // radioSpells1
-            // 
-            this.radioSpells1.AutoSize = true;
-            this.radioSpells1.Checked = true;
-            this.radioSpells1.Location = new System.Drawing.Point(6, 37);
-            this.radioSpells1.Name = "radioSpells1";
-            this.radioSpells1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.radioSpells1.Size = new System.Drawing.Size(175, 17);
-            this.radioSpells1.TabIndex = 3;
-            this.radioSpells1.TabStop = true;
-            this.radioSpells1.Text = "Randomize spell, but not school";
-            this.radioSpells1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(668, 738);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.radioRandCreaturesDisabled.AutoSize = true;
+            this.radioRandCreaturesDisabled.Location = new System.Drawing.Point(7, 20);
+            this.radioRandCreaturesDisabled.Name = "radioRandCreaturesDisabled";
+            this.radioRandCreaturesDisabled.Size = new System.Drawing.Size(66, 17);
+            this.radioRandCreaturesDisabled.TabIndex = 0;
+            this.radioRandCreaturesDisabled.Text = "Disabled";
+            this.radioRandCreaturesDisabled.UseVisualStyleBackColor = true;
             // 
             // textBoxHelp
             // 
@@ -1006,21 +1077,21 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(695, 310);
+            this.buttonSave.Location = new System.Drawing.Point(16, 380);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(75, 23);
+            this.buttonSave.Size = new System.Drawing.Size(258, 23);
             this.buttonSave.TabIndex = 2;
-            this.buttonSave.Text = "Save";
+            this.buttonSave.Text = "Save current settings to Randomizer.cfg";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(820, 309);
+            this.buttonLoad.Location = new System.Drawing.Point(432, 380);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(75, 23);
+            this.buttonLoad.Size = new System.Drawing.Size(256, 23);
             this.buttonLoad.TabIndex = 3;
-            this.buttonLoad.Text = "Load";
+            this.buttonLoad.Text = "Load settings from Randomizer.cfg";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
@@ -1028,11 +1099,68 @@
             // 
             this.errorProvider.ContainerControl = this;
             // 
+            // comboTemplates
+            // 
+            this.comboTemplates.FormattingEnabled = true;
+            this.comboTemplates.Location = new System.Drawing.Point(754, 294);
+            this.comboTemplates.Name = "comboTemplates";
+            this.comboTemplates.Size = new System.Drawing.Size(199, 21);
+            this.comboTemplates.TabIndex = 4;
+            this.comboTemplates.MouseHover += new System.EventHandler(this.labelTemplates_MouseHover);
+            // 
+            // labelTemplates
+            // 
+            this.labelTemplates.AutoSize = true;
+            this.labelTemplates.Location = new System.Drawing.Point(694, 297);
+            this.labelTemplates.Name = "labelTemplates";
+            this.labelTemplates.Size = new System.Drawing.Size(54, 13);
+            this.labelTemplates.TabIndex = 5;
+            this.labelTemplates.Text = "Template:";
+            this.labelTemplates.MouseHover += new System.EventHandler(this.labelTemplates_MouseHover);
+            // 
+            // buttonSaveTemplate
+            // 
+            this.buttonSaveTemplate.Location = new System.Drawing.Point(697, 350);
+            this.buttonSaveTemplate.Name = "buttonSaveTemplate";
+            this.buttonSaveTemplate.Size = new System.Drawing.Size(259, 23);
+            this.buttonSaveTemplate.TabIndex = 6;
+            this.buttonSaveTemplate.Text = "Save current settings to template";
+            this.buttonSaveTemplate.UseVisualStyleBackColor = true;
+            this.buttonSaveTemplate.Click += new System.EventHandler(this.buttonSaveTemplate_Click);
+            this.buttonSaveTemplate.MouseHover += new System.EventHandler(this.labelTemplates_MouseHover);
+            // 
+            // buttonLoadTemplate
+            // 
+            this.buttonLoadTemplate.Location = new System.Drawing.Point(697, 321);
+            this.buttonLoadTemplate.Name = "buttonLoadTemplate";
+            this.buttonLoadTemplate.Size = new System.Drawing.Size(259, 23);
+            this.buttonLoadTemplate.TabIndex = 7;
+            this.buttonLoadTemplate.Text = "Load template";
+            this.buttonLoadTemplate.UseVisualStyleBackColor = true;
+            this.buttonLoadTemplate.Click += new System.EventHandler(this.buttonLoadTemplate_Click);
+            this.buttonLoadTemplate.MouseHover += new System.EventHandler(this.labelTemplates_MouseHover);
+            // 
+            // buttonDeleteTemplate
+            // 
+            this.buttonDeleteTemplate.Location = new System.Drawing.Point(698, 379);
+            this.buttonDeleteTemplate.Name = "buttonDeleteTemplate";
+            this.buttonDeleteTemplate.Size = new System.Drawing.Size(258, 23);
+            this.buttonDeleteTemplate.TabIndex = 8;
+            this.buttonDeleteTemplate.Text = "Delete template";
+            this.buttonDeleteTemplate.UseVisualStyleBackColor = true;
+            this.buttonDeleteTemplate.Click += new System.EventHandler(this.buttonDeleteTemplate_Click);
+            this.buttonDeleteTemplate.MouseHover += new System.EventHandler(this.labelTemplates_MouseHover);
+            // 
             // RandConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(965, 800);
+            this.ClientSize = new System.Drawing.Size(965, 425);
+            this.Controls.Add(this.buttonDeleteTemplate);
+            this.Controls.Add(this.buttonLoadTemplate);
+            this.Controls.Add(this.buttonSaveTemplate);
+            this.Controls.Add(this.labelTemplates);
+            this.Controls.Add(this.comboTemplates);
             this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxHelp);
@@ -1041,38 +1169,7 @@
             this.Text = "Oblivion Randomizer Config";
             this.Load += new System.EventHandler(this.RandConfigForm_Load);
             this.tabs.ResumeLayout(false);
-            this.tabSettings.ResumeLayout(false);
-            this.groupCreatures.ResumeLayout(false);
-            this.groupUseEssentialCreatures.ResumeLayout(false);
-            this.groupUseEssentialCreatures.PerformLayout();
-            this.groupExcludeHorses.ResumeLayout(false);
-            this.groupExcludeHorses.PerformLayout();
-            this.groupMiscRandCreatures.ResumeLayout(false);
-            this.groupMiscRandCreatures.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupLootGold.ResumeLayout(false);
-            this.groupLootGold.PerformLayout();
-            this.groupLootDeathItem.ResumeLayout(false);
-            this.groupLootDeathItem.PerformLayout();
-            this.groupLootAddItem.ResumeLayout(false);
-            this.groupLootAddItem.PerformLayout();
-            this.groupLootWorldItem.ResumeLayout(false);
-            this.groupLootWorldItem.PerformLayout();
-            this.groupLootRandChestInventory.ResumeLayout(false);
-            this.groupLootRandChestInventory.PerformLayout();
-            this.groupLootRandActorInventory.ResumeLayout(false);
-            this.groupLootRandActorInventory.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupNPCActorScaling.ResumeLayout(false);
-            this.groupNPCActorScaling.PerformLayout();
-            this.panelActorScaling.ResumeLayout(false);
-            this.panelActorScaling.PerformLayout();
-            this.groupNPCRestoreAttributes.ResumeLayout(false);
-            this.groupNPCRestoreAttributes.PerformLayout();
-            this.groupNPCRandomizeAttributes.ResumeLayout(false);
-            this.groupNPCRandomizeAttributes.PerformLayout();
-            this.groupNPCVampire.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericVampire)).EndInit();
+            this.tabMiscSettings.ResumeLayout(false);
             this.groupMisc.ResumeLayout(false);
             this.groupMiscSeed.ResumeLayout(false);
             this.groupMiscSeed.PerformLayout();
@@ -1086,6 +1183,42 @@
             this.groupMiscQuestObjects.PerformLayout();
             this.groupMiscSpells.ResumeLayout(false);
             this.groupMiscSpells.PerformLayout();
+            this.tabLootSettings.ResumeLayout(false);
+            this.groupLoot.ResumeLayout(false);
+            this.groupLootExcludeUnplayableItems.ResumeLayout(false);
+            this.groupLootExcludeUnplayableItems.PerformLayout();
+            this.groupLootGold.ResumeLayout(false);
+            this.groupLootGold.PerformLayout();
+            this.groupLootDeathItem.ResumeLayout(false);
+            this.groupLootDeathItem.PerformLayout();
+            this.groupLootAddItem.ResumeLayout(false);
+            this.groupLootAddItem.PerformLayout();
+            this.groupLootWorldItem.ResumeLayout(false);
+            this.groupLootWorldItem.PerformLayout();
+            this.groupLootRandChestInventory.ResumeLayout(false);
+            this.groupLootRandChestInventory.PerformLayout();
+            this.groupLootRandActorInventory.ResumeLayout(false);
+            this.groupLootRandActorInventory.PerformLayout();
+            this.tabActorSettings.ResumeLayout(false);
+            this.groupActors.ResumeLayout(false);
+            this.groupNPCActorScaling.ResumeLayout(false);
+            this.groupNPCActorScaling.PerformLayout();
+            this.panelActorScaling.ResumeLayout(false);
+            this.panelActorScaling.PerformLayout();
+            this.groupNPCRestoreAttributes.ResumeLayout(false);
+            this.groupNPCRestoreAttributes.PerformLayout();
+            this.groupNPCRandomizeAttributes.ResumeLayout(false);
+            this.groupNPCRandomizeAttributes.PerformLayout();
+            this.groupNPCVampire.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericVampire)).EndInit();
+            this.tabCreatureSettings.ResumeLayout(false);
+            this.groupCreatures.ResumeLayout(false);
+            this.groupUseEssentialCreatures.ResumeLayout(false);
+            this.groupUseEssentialCreatures.PerformLayout();
+            this.groupExcludeHorses.ResumeLayout(false);
+            this.groupExcludeHorses.PerformLayout();
+            this.groupMiscRandCreatures.ResumeLayout(false);
+            this.groupMiscRandCreatures.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1095,10 +1228,10 @@
         #endregion
 
         private System.Windows.Forms.TabControl tabs;
-        private System.Windows.Forms.TabPage tabSettings;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TabPage tabMiscSettings;
+        private System.Windows.Forms.TabPage tabLootSettings;
+        private System.Windows.Forms.GroupBox groupLoot;
+        private System.Windows.Forms.GroupBox groupActors;
         private System.Windows.Forms.GroupBox groupMisc;
         private System.Windows.Forms.RadioButton radioExcludeQuestYes;
         private System.Windows.Forms.RadioButton radioExcludeQuestNo;
@@ -1172,6 +1305,16 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonLoad;
         private System.Windows.Forms.ErrorProvider errorProvider;
+        private System.Windows.Forms.TabPage tabActorSettings;
+        private System.Windows.Forms.TabPage tabCreatureSettings;
+        private System.Windows.Forms.GroupBox groupLootExcludeUnplayableItems;
+        private System.Windows.Forms.RadioButton radioLootExcludeUnplayableYes;
+        private System.Windows.Forms.RadioButton radioLootExcludeUnplayableNo;
+        private System.Windows.Forms.Label labelTemplates;
+        private System.Windows.Forms.ComboBox comboTemplates;
+        private System.Windows.Forms.Button buttonSaveTemplate;
+        private System.Windows.Forms.Button buttonLoadTemplate;
+        private System.Windows.Forms.Button buttonDeleteTemplate;
     }
 }
 

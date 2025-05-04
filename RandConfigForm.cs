@@ -14,6 +14,7 @@ using System.Reflection;
 using Microsoft.Extensions.Configuration;
 using System.Windows.Forms.VisualStyles;
 using System.Globalization;
+using System.Net.Configuration;
 
 namespace obrandomizer_gui
 {
@@ -23,6 +24,27 @@ namespace obrandomizer_gui
         public RandConfigForm()
         {
             InitializeComponent();
+            LoadSettings("Data/Randomizer.cfg");
+            try
+            {
+                if (!Directory.Exists("obrn-configs"))
+                {
+                    Directory.CreateDirectory("obrn-configs");
+                } else
+                {
+                    DirectoryInfo d = new DirectoryInfo($"{Directory.GetCurrentDirectory()}/obrn-configs");
+                    foreach (var template in d.GetFiles("*.cfg"))
+                    {
+                        comboTemplates.Items.Add($"{template.Name}");
+                    }
+                }
+            } catch (Exception ex)
+            {
+                buttonDeleteTemplate.Enabled = buttonSaveTemplate.Enabled = buttonLoadTemplate.Enabled =
+                    comboTemplates.Enabled = false;
+                MessageBox.Show($"Could not read template files. Exception: {ex}", "Error reading templates",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private static string DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
@@ -31,6 +53,7 @@ namespace obrandomizer_gui
         {
             //todo: consider throwing an exception for invalid return paths
             bool result;
+            int number;
             if (s == null)
             {
                 return false;
@@ -39,6 +62,11 @@ namespace obrandomizer_gui
             if (Boolean.TryParse(s, out result))
             {
                 return result;
+            }
+
+            if (int.TryParse(s, out number))
+            {
+                return (number != 0);
             }
 
             if (s.Equals("yes", StringComparison.OrdinalIgnoreCase))
@@ -104,127 +132,211 @@ namespace obrandomizer_gui
             textBoxMiscSeed.Text = BitConverter.ToUInt32(randomSeed, 0).ToString();
         }
 
-        private void LoadSettings(string fileName)
+        private void LoadSettings(string fileName) //i hate pretty much everything about this method
         {
-            IConfiguration config = new ConfigurationBuilder()
-                .AddIniFile(fileName)
-                .Build();
-            int n;
-            var invalidParses = new List<string>();
-            /*
-            [Misc]
-            oSeed=
-            oExcludeQuestItems=yes
-            oDelayStart=no
-            oInstallCrashFix=0
-            oHitEffect=20
-            oRandSpells=1*/
-            IConfigurationSection section = config.GetSection("Misc");
-            textBoxMiscSeed.Text = section["oSeed"];
-            radioExcludeQuestNo.Checked = !(radioExcludeQuestYes.Checked = StringToBool(section["oExcludeQuestItems"]));
-            radioDelayStartNo.Checked = !(radioDelayStartYes.Checked = StringToBool(section["oDelayStart"]));
-            if (Int32.TryParse(section["oInstallCrashFix"], out n))
+            try
             {
-                checkInvalidTexturePatch.Checked = ((n & 1) == 1);
-                checkInvalidCreatureDataPatch.Checked = ((n & 2) == 2);
-            } else
+                IConfiguration config = new ConfigurationBuilder()
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddIniFile(fileName, optional: false)
+                        .Build();
+                int n;
+                double d;
+                var invalidParses = new List<string>();
+                /*
+                [Misc]
+                oSeed=
+                oExcludeQuestItems=yes
+                oDelayStart=no
+                oInstallCrashFix=0
+                oHitEffect=20
+                oRandSpells=1*/
+                IConfigurationSection section = config.GetSection("Misc");
+                textBoxMiscSeed.Text = section["oSeed"];
+                radioExcludeQuestNo.Checked = !(radioExcludeQuestYes.Checked = StringToBool(section["oExcludeQuestItems"]));
+                radioDelayStartNo.Checked = !(radioDelayStartYes.Checked = StringToBool(section["oDelayStart"]));
+                if (Int32.TryParse(section["oInstallCrashFix"], out n))
+                {
+                    checkInvalidTexturePatch.Checked = ((n & 1) == 1);
+                    checkInvalidCreatureDataPatch.Checked = ((n & 2) == 2);
+                }
+                else
+                {
+                    invalidParses.Add("oInstallCrashFix");
+                    checkInvalidTexturePatch.Checked = checkInvalidCreatureDataPatch.Checked = false;
+                }
+
+                if (Int32.TryParse(section["oHitEffect"], out n))
+                {
+                    numericHitEffect.Value = n;
+                }
+                else
+                {
+                    invalidParses.Add("oHitEffect");
+                    numericHitEffect.Value = 20;
+                }
+
+                if (!StringIntToThreeRadioBoxes(section["oRandSpells"],
+                    radioSpellsDisabled, radioSpells1, radioSpells2))
+                {
+                    invalidParses.Add("oRandSpells");
+                }
+
+
+                /*[Loot]
+                oRandInventory=1
+                oRandContainers=1
+                oWorldItems=1
+                oAddItems=1
+                oDeathItems=1
+                oRandGold=0
+                oExcludeUnplayableItems=1*/
+                section = config.GetSection("Loot");
+
+                if (!StringIntToThreeRadioBoxes(section["oRandInventory"],
+                    radioRandActorInventoryDisabled,
+                    radioRandActorInventoryEnabled,
+                    radioRandActorInventoryAggressive))
+                {
+                    invalidParses.Add("oRandInventory");
+                }
+
+                if (!StringIntToThreeRadioBoxes(section["oRandContainers"],
+                    radioRandChestInventoryDisabled,
+                    radioRandChestInventoryEnabled,
+                    radioRandChestInventoryAggressive))
+                {
+                    invalidParses.Add("oRandContainers");
+                }
+
+                if (!StringIntToThreeRadioBoxes(section["oWorldItems"],
+                    radioWorldItemDisabled,
+                    radioWorldItemEnabled,
+                    radioWorldItemAggressive))
+                {
+                    invalidParses.Add("oWorldItems");
+                }
+
+                if (!StringIntToThreeRadioBoxes(section["oAddItems"],
+                    radioAddItemDisabled,
+                    radioAddItemEnabled,
+                    radioAddItemAggressive))
+                {
+                    invalidParses.Add("oAddItems");
+                }
+
+                if (!StringIntToThreeRadioBoxes(section["oDeathItems"],
+                    radioDeathItemDisabled,
+                    radioDeathItemEnabled,
+                    radioDeathItemAggressive))
+                {
+                    invalidParses.Add("oDeathItems");
+                }
+
+                radioLootRandGoldNo.Checked = !(radioLootRandGoldYes.Checked = StringToBool(section["oRandGold"]));
+                radioLootExcludeUnplayableNo.Checked = !(radioLootExcludeUnplayableYes.Checked = StringToBool(section["oExcludeUnplayableItems"]));
+                /*[Actor]
+                oRandomizeAttrib=1
+                oRestoreBaseAttributes=0
+                oVampire=10
+                oScaleActors=0
+                oScaleMin=0.7
+                oScaleMax=1.5*/
+                section = config.GetSection("Actor");
+
+                if (!StringIntToThreeRadioBoxes(section["oRandomizeAttrib"],
+                    radioAttribDisabled,
+                    radioAttribNonEssential,
+                    radioAttribAll))
+                {
+                    invalidParses.Add("oRandomizeAttrib");
+                }
+
+                radioRestoreActorAttribNo.Checked = !(radioRestoreActorAttribYes.Checked = StringToBool(section["oRestoreBaseAttributes"]));
+
+                if (Int32.TryParse(section["oVampire"], out n))
+                {
+                    numericVampire.Value = n;
+                }
+                else
+                {
+                    invalidParses.Add("oVampire");
+                    numericVampire.Value = 10;
+                }
+
+                checkActorScaling.Checked = StringToBool(section["oScaleActors"]);
+                if (!Double.TryParse(section["oScaleMin"], out d))
+                {
+                    if (!Double.TryParse(section["oScaleMin"].Replace(".", DecimalSeparator), out d))
+                    {
+                        invalidParses.Add("oScaleMin");
+                        textActorScalingMin.Text = $"{0.7}";
+                    } 
+                    else
+                    {
+                        textActorScalingMin.Text = $"{d}";
+                    }
+                }
+                else
+                {
+                    textActorScalingMin.Text = $"{d}";
+                }
+                if (!Double.TryParse(section["oScaleMax"], out d))
+                {
+                    if (!Double.TryParse(section["oScaleMax"].Replace(".", DecimalSeparator), out d))
+                    {
+                        invalidParses.Add("oScaleMax");
+                        textActorScalingMax.Text = $"{1.5}";
+                    }
+                    else
+                    {
+                        textActorScalingMax.Text = $"{d}";
+                    }
+                }
+                else
+                {
+                    textActorScalingMax.Text = $"{d}";
+                }
+
+                /*[Creatures]
+                oRandCreatures=1
+                oUseEssentialCreatures=0
+                oSkipHorses=1  */
+                section = config.GetSection("Creatures");
+                if (!StringIntToThreeRadioBoxes(section["oRandCreatures"],
+                    radioRandCreaturesDisabled,
+                    radioRandCreaturesEnabled,
+                    radioRandCreaturesUnstable))
+                {
+                    invalidParses.Add("oRandCreatures");
+                }
+
+                radioUseEssentialCreaturesNo.Checked = !(radioUseEssentialCreaturesYes.Checked = StringToBool(section["oUseEssentialCreatures"]));
+                radioExcludeHorsesNo.Checked = !(radioExcludeHorsesYes.Checked = StringToBool(section["oSkipHorses"]));
+
+                if (invalidParses.Count > 0)
+                {
+                    string errorMsg = "Couldn't parse the following settings:";
+                    foreach (var msg in invalidParses)
+                    {
+                        errorMsg += $"\r\n{msg}";
+                    }
+                    MessageBox.Show(errorMsg, "Config parsing error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } catch (FileNotFoundException)
             {
-                //MessageBox.Show($"Could not parse \"oInstallCrashFix\" from \"{fileName}\".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                invalidParses.Add("oInstallCrashFix");
-                checkInvalidTexturePatch.Checked = checkInvalidCreatureDataPatch.Checked = false;
+                MessageBox.Show($"Config file {fileName} not found. Make sure the GUI application " +
+                    "is in your Oblivion directory and the config is in your Oblivion/Data directory.", 
+                    "Config not found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Couldn't parse config file {fileName}. Exception message: {ex}",
+                    "Invalid config",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-            
-            if (Int32.TryParse(section["oHitEffect"], out n))
-            {
-                numericHitEffect.Value = n;
-            } else
-            {
-                //MessageBox.Show($"Could not parse \"oHitEffect\" from \"{fileName}\".", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                invalidParses.Add("oHitEffect");
-                numericHitEffect.Value = 20;
-            }
-
-            if (!StringIntToThreeRadioBoxes(section["oRandSpells"],
-                radioSpellsDisabled, radioSpells1, radioSpells2))
-            {
-                invalidParses.Add("oRandSpells");
-            }
-
-
-            /*[Loot]
-            oRandInventory=1
-            oRandContainers=1
-            oWorldItems=1
-            oAddItems=1
-            oDeathItems=1
-            oRandGold=0*/
-            section = config.GetSection("Loot");
-
-            if (!StringIntToThreeRadioBoxes(section["oRandInventory"],
-                radioRandActorInventoryDisabled,
-                radioRandActorInventoryEnabled,
-                radioRandActorInventoryAggressive))
-            {
-                invalidParses.Add("oRandInventory");
-            }
-
-            if (!StringIntToThreeRadioBoxes(section["oRandContainers"],
-                radioRandChestInventoryDisabled,
-                radioRandChestInventoryEnabled,
-                radioRandChestInventoryAggressive))
-            {
-                invalidParses.Add("oRandContainers");
-            }
-
-            if (!StringIntToThreeRadioBoxes(section["oWorldItems"],
-                radioWorldItemDisabled,
-                radioWorldItemEnabled,
-                radioWorldItemAggressive))
-            {
-                invalidParses.Add("oWorldItems");
-            }
-
-            if (!StringIntToThreeRadioBoxes(section["oAddItems"],
-                radioAddItemDisabled,
-                radioAddItemEnabled,
-                radioAddItemAggressive))
-            {
-                invalidParses.Add("oAddItems");
-            }
-
-            if (!StringIntToThreeRadioBoxes(section["oDeathItems"],
-                radioDeathItemDisabled,
-                radioDeathItemEnabled,
-                radioDeathItemAggressive))
-            {
-                invalidParses.Add("oDeathItems");
-            }
-
-            if (!StringIntToThreeRadioBoxes(section["oAddItems"],
-                radioAddItemDisabled,
-                radioAddItemEnabled,
-                radioAddItemAggressive))
-            {
-                invalidParses.Add("oAddItems");
-            }
-
-            radioLootRandGoldNo.Checked = !(radioLootRandGoldYes.Checked = StringToBool(section["oRandGold"]));
-
-            /*[Actor]
-            oRandomizeAttrib=1
-            oRandomizeAttribEssential=0
-            oRestoreBaseAttributes=0
-            oVampire=10
-            oScaleActors=0
-            oScaleMin=0.7
-            oScaleMax=1.5*/
-
-
-
-            /*[Creatures]
-            oRandCreatures=1
-            oUseEssentialCreatures=0
-            oSkipHorses=1  */
 
         }
 
@@ -239,8 +351,8 @@ namespace obrandomizer_gui
                 //Misc
                 output.WriteLine("[Misc]");
                 output.WriteLine("oSeed=" + textBoxMiscSeed.Text);
-                output.WriteLine("oExcludeQuestItems=" + (radioExcludeQuestYes.Checked ? "yes" : "no"));
-                output.WriteLine("oDelayStart=" + (radioDelayStartYes.Checked ? "yes" : "no"));
+                output.WriteLine("oExcludeQuestItems=" + (radioExcludeQuestYes.Checked ? "1" : "0"));
+                output.WriteLine("oDelayStart=" + (radioDelayStartYes.Checked ? "1" : "0"));
                 if (checkInvalidTexturePatch.Checked)
                 {
                     flags |= 1;
@@ -254,10 +366,12 @@ namespace obrandomizer_gui
                 if (radioSpellsDisabled.Checked)
                 {
                     output.WriteLine("oRandSpells=0");
-                } else if (radioSpells1.Checked)
+                } 
+                else if (radioSpells1.Checked)
                 {
                     output.WriteLine("oRandSpells=1");
-                } else if (radioSpells2.Checked)
+                } 
+                else //if (radioSpells2.Checked)
                 {
                     output.WriteLine("oRandSpells=2");
                 }
@@ -267,10 +381,12 @@ namespace obrandomizer_gui
                 if (radioRandActorInventoryDisabled.Checked)
                 {
                     output.WriteLine("oRandInventory=0");
-                } else if (radioRandActorInventoryEnabled.Checked)
+                } 
+                else if (radioRandActorInventoryEnabled.Checked)
                 {
                     output.WriteLine("oRandInventory=1");
-                } else if (radioRandActorInventoryAggressive.Checked)
+                } 
+                else //if (radioRandActorInventoryAggressive.Checked)
                 {
                     output.WriteLine("oRandInventory=2");
                 }
@@ -283,7 +399,7 @@ namespace obrandomizer_gui
                 {
                     output.WriteLine("oRandContainers=1");
                 }
-                else if (radioRandChestInventoryAggressive.Checked)
+                else //if (radioRandChestInventoryAggressive.Checked)
                 {
                     output.WriteLine("oRandContainers=2");
                 }
@@ -296,7 +412,7 @@ namespace obrandomizer_gui
                 {
                     output.WriteLine("oWorldItems=1");
                 }
-                else if (radioWorldItemAggressive.Checked)
+                else //if (radioWorldItemAggressive.Checked)
                 {
                     output.WriteLine("oWorldItems=2");
                 }
@@ -309,7 +425,7 @@ namespace obrandomizer_gui
                 {
                     output.WriteLine("oAddItems=1");
                 }
-                else if (radioAddItemAggressive.Checked)
+                else //if (radioAddItemAggressive.Checked)
                 {
                     output.WriteLine("oAddItems=2");
                 }
@@ -322,17 +438,33 @@ namespace obrandomizer_gui
                 {
                     output.WriteLine("oDeathItems=1");
                 }
-                else if (radioDeathItemAggressive.Checked)
+                else //if (radioDeathItemAggressive.Checked)
                 {
                     output.WriteLine("oDeathItems=2");
                 }
                 //gold
                 output.WriteLine("oRandGold=" + (radioLootRandGoldYes.Checked ? "1" : "0"));
+                //unplayable items
+                output.WriteLine("oExcludeUnplayableItems=" + (radioLootExcludeUnplayableYes.Checked ? "1" : "0"));
                 //Actor params
                 output.WriteLine("\n[Actor]");
                 //attributes
-                output.WriteLine("oRandomizeAttrib=" + (radioAttribDisabled.Checked || radioRestoreActorAttribYes.Checked ? "0" : "1"));
-                output.WriteLine("oRandomizeAttribEssential=" + (radioAttribAll.Checked && radioRestoreActorAttribNo.Checked ? "1" : "0"));
+                //this is ugly
+                //output.WriteLine("oRandomizeAttrib=" + (radioAttribDisabled.Checked || radioRestoreActorAttribYes.Checked ? "0" : "1"));
+                //output.WriteLine("oRandomizeAttribEssential=" + (radioAttribAll.Checked && radioRestoreActorAttribNo.Checked ? "1" : "0"));
+                if (radioAttribAll.Checked)
+                {
+                    output.WriteLine("oRandomizeAttrib=2");
+                }
+                else if (radioAttribNonEssential.Checked)
+                {
+                    output.WriteLine("oRandomizeAttrib=1");
+                } 
+                else
+                {
+                    output.WriteLine("oRandomizeAttrib=0");
+                }
+
                 //restore attributes
                 output.WriteLine("oRestoreBaseAttributes=" + (radioRestoreActorAttribYes.Checked ? "1" : "0"));
                 //vampirism
@@ -352,7 +484,7 @@ namespace obrandomizer_gui
                 {
                     output.WriteLine("oRandCreatures=1");
                 }
-                else if (radioRandCreaturesUnstable.Checked)
+                else// if (radioRandCreaturesUnstable.Checked)
                 {
                     output.WriteLine("oRandCreatures=2");
                 }
@@ -443,20 +575,20 @@ namespace obrandomizer_gui
 
         private void groupLootDeathItem_MouseHover(object sender, EventArgs e)
         {
-            textBoxHelp.Text = "This setting controls the randomization of items placed in NPCs' inventories upon death, such as \"Daedra Hearts\" placed in Dremoras " +
+            textBoxHelp.Text = "This setting controls the randomization of items placed in NPCs' inventories upon death, such as \"Daedra Hearts\" for Dremoras." +
                 "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Enabled, normal - every item will get randomized into an item of the same type (for example a helmet " +
                 "may only get randomized into another helmet),\r\n\r\n- Enabled, aggressive - every item will get randomized into an item of any type.";
         }
 
         private void groupLootGold_MouseHover(object sender, EventArgs e)
         {
-            textBoxHelp.Text = "This setting determines how the randomizer approaches randomizing gold\r\n\r\n- Only randomize quantity - only the quantity of gold " +
+            textBoxHelp.Text = "This setting determines how the randomizer approaches randomizing gold.\r\n\r\n- Only randomize quantity - only the quantity of gold " +
                 "will be randomized.\r\n\r\n- Randomize into another item - gold will be treated just like every other regular item.";
         }
 
         private void groupNPCRandomizeAttributes_MouseHover(object sender, EventArgs e)
         {
-            textBoxHelp.Text = "This setting controls the randomization of actor parameters. The parameters includeaggression, confidence, responsibility," +
+            textBoxHelp.Text = "This setting controls the randomization of actor parameters. The parameters include aggression, confidence and responsibility." +
                 "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " + 
                 "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.";
         }
@@ -499,6 +631,13 @@ namespace obrandomizer_gui
                 "\"Enable anti-crash patches\" group.";
         }
 
+        private void groupLootExcludeUnplayableItems_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "If enabled, this setting will cause items marked as unplayable to be excluded from the randomization process.\r\n\r\n" + 
+                "In vanilla, these are typically items that the game does not want the player to wear for plot reasons (such as Emperor Uriel Septim's robe), " +
+                "but custom mods may use this feature to handle some internal logic and potentially break if these are randomized from or into something else.";
+        }
+
         private void RandConfigForm_Load(object sender, EventArgs e)
         {
             textActorScalingMin.Text = $"0{DecimalSeparator}7"; //lol
@@ -507,12 +646,13 @@ namespace obrandomizer_gui
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            SaveSettings("test.cfg");
+            SaveSettings("Data/Randomizer.cfg");
         }
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            LoadSettings("test.cfg");
+            LoadSettings("Data/Randomizer.cfg");
+            comboTemplates.Text = "Data/Randomizer.cfg";
         }
 
         private void textActorScalingMin_Validating(object sender, CancelEventArgs e)
@@ -557,6 +697,81 @@ namespace obrandomizer_gui
             }
             buttonSave.Enabled = true;
             errorProvider.SetError(textActorScalingMax, null);
+        }
+
+        private void buttonSaveTemplate_Click(object sender, EventArgs e)
+        {
+            if (comboTemplates.Text.Length == 0)
+            {
+                MessageBox.Show("Invalid template name.", "Save template", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var result = DialogResult.Yes;
+            string path = $"obrn-configs/{comboTemplates.Text}";
+            if (File.Exists(path))
+            {
+                result = MessageBox.Show("The following template already exists. Are you sure you want to overwrite it?",
+                    "Save template",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+            }
+            if (result == DialogResult.Yes)
+            {
+                SaveSettings(path);
+                if (comboTemplates.Items.IndexOf(comboTemplates.Text) == -1)
+                {
+                    comboTemplates.Items.Add(comboTemplates.Text);
+                }
+            }
+        }
+
+        private void buttonLoadTemplate_Click(object sender, EventArgs e)
+        {
+            if (comboTemplates.Text.Length == 0)
+            {
+                MessageBox.Show("Invalid template name.", "Save template", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Console.WriteLine($"Changing current config to {comboTemplates.Text}");
+            LoadSettings($"obrn-configs/{comboTemplates.Text}");
+        }
+
+        private void buttonDeleteTemplate_Click(object sender, EventArgs e)
+        {
+            if (comboTemplates.Text.Length == 0)
+            {
+                MessageBox.Show("Invalid template name.", "Delete template", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string path = $"obrn-configs/{comboTemplates.Text}";
+
+            if (!File.Exists(path) ||
+                comboTemplates.Items.IndexOf(comboTemplates.Text) == -1)
+            {
+                MessageBox.Show("Given template does not exist.", "Delete template", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                File.Delete(path);
+                comboTemplates.Items.Remove(comboTemplates.Text);
+                comboTemplates.SelectedIndex = -1;
+            } catch (Exception ex)
+            {
+                MessageBox.Show($"Could not delete the template file. Exception: {ex}", "Delete template",
+                 MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void labelTemplates_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Controls responsible for template management.\r\n\r\nThe game loads randomizer's settings from the Data/Randomizer.cfg file, " +
+                "and the template system allows you to keep multiple config files on standby.\r\n\r\n" +
+                "For example, selecting \"Chaos.cfg\" from the dropdown box and pressing \"Load template\" will load the chaos settings into the GUI. " +
+                "Then, pressing \"Save current settings to Randomizer.cfg\" will copy all settings from the \"Chaos.cfg\" template to the main config file, " +
+                "which will be used by the game.";
         }
     }
 }
