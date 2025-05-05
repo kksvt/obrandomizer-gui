@@ -109,6 +109,8 @@
             this.radioRandCreaturesEnabled = new System.Windows.Forms.RadioButton();
             this.radioRandCreaturesDisabled = new System.Windows.Forms.RadioButton();
             this.tabExcludes = new System.Windows.Forms.TabPage();
+            this.buttonReloadExcludes = new System.Windows.Forms.Button();
+            this.buttonSaveExcludes = new System.Windows.Forms.Button();
             this.groupDontAddToRandomizerLists = new System.Windows.Forms.GroupBox();
             this.buttonDontAddToLists = new System.Windows.Forms.Button();
             this.textBoxDontAddToLists = new System.Windows.Forms.TextBox();
@@ -127,8 +129,6 @@
             this.buttonLoadTemplate = new System.Windows.Forms.Button();
             this.buttonDeleteTemplate = new System.Windows.Forms.Button();
             this.labelLastLoaded = new System.Windows.Forms.Label();
-            this.buttonSaveExcludes = new System.Windows.Forms.Button();
-            this.buttonReloadExcludes = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabMiscSettings.SuspendLayout();
             this.groupMisc.SuspendLayout();
@@ -1097,6 +1097,26 @@
             this.tabExcludes.Text = "Mod excludes";
             this.tabExcludes.UseVisualStyleBackColor = true;
             // 
+            // buttonReloadExcludes
+            // 
+            this.buttonReloadExcludes.Location = new System.Drawing.Point(357, 287);
+            this.buttonReloadExcludes.Name = "buttonReloadExcludes";
+            this.buttonReloadExcludes.Size = new System.Drawing.Size(291, 23);
+            this.buttonReloadExcludes.TabIndex = 5;
+            this.buttonReloadExcludes.Text = "Reload RandomizerSkip.cfg";
+            this.buttonReloadExcludes.UseVisualStyleBackColor = true;
+            this.buttonReloadExcludes.Click += new System.EventHandler(this.buttonReloadExcludes_Click);
+            // 
+            // buttonSaveExcludes
+            // 
+            this.buttonSaveExcludes.Location = new System.Drawing.Point(12, 287);
+            this.buttonSaveExcludes.Name = "buttonSaveExcludes";
+            this.buttonSaveExcludes.Size = new System.Drawing.Size(291, 23);
+            this.buttonSaveExcludes.TabIndex = 4;
+            this.buttonSaveExcludes.Text = "Save to RandomizerSkip.cfg";
+            this.buttonSaveExcludes.UseVisualStyleBackColor = true;
+            this.buttonSaveExcludes.Click += new System.EventHandler(this.buttonSaveExcludes_Click);
+            // 
             // groupDontAddToRandomizerLists
             // 
             this.groupDontAddToRandomizerLists.Controls.Add(this.buttonDontAddToLists);
@@ -1117,6 +1137,7 @@
             this.buttonDontAddToLists.Text = "Paste selection from \"Your mods\"";
             this.buttonDontAddToLists.UseVisualStyleBackColor = true;
             this.buttonDontAddToLists.Click += new System.EventHandler(this.buttonDontAddToLists_Click);
+            this.buttonDontAddToLists.MouseHover += new System.EventHandler(this.buttonDontAddToLists_MouseHover);
             // 
             // textBoxDontAddToLists
             // 
@@ -1128,6 +1149,7 @@
             this.textBoxDontAddToLists.TabIndex = 2;
             this.textBoxDontAddToLists.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxDontAddToLists_DragDrop);
             this.textBoxDontAddToLists.DragEnter += new System.Windows.Forms.DragEventHandler(this.listDontRandomize_DragEnter);
+            this.textBoxDontAddToLists.MouseHover += new System.EventHandler(this.textBoxDontAddToLists_MouseHover);
             // 
             // groupDontRandomize
             // 
@@ -1149,6 +1171,7 @@
             this.buttonDontRandomizePaste.Text = "Paste selection from \"Your mods\"";
             this.buttonDontRandomizePaste.UseVisualStyleBackColor = true;
             this.buttonDontRandomizePaste.Click += new System.EventHandler(this.buttonDontRandomizePaste_Click);
+            this.buttonDontRandomizePaste.MouseHover += new System.EventHandler(this.buttonDontRandomizePaste_MouseHover);
             // 
             // textBoxDontRandomize
             // 
@@ -1160,6 +1183,7 @@
             this.textBoxDontRandomize.TabIndex = 0;
             this.textBoxDontRandomize.DragDrop += new System.Windows.Forms.DragEventHandler(this.listDontRandomize_DragDrop);
             this.textBoxDontRandomize.DragEnter += new System.Windows.Forms.DragEventHandler(this.listDontRandomize_DragEnter);
+            this.textBoxDontRandomize.MouseHover += new System.EventHandler(this.textBoxDontRandomize_MouseHover);
             // 
             // groupCurrentMods
             // 
@@ -1181,6 +1205,7 @@
             this.listMods.Size = new System.Drawing.Size(188, 225);
             this.listMods.Sorted = true;
             this.listMods.TabIndex = 2;
+            this.listMods.MouseHover += new System.EventHandler(this.listMods_MouseHover);
             // 
             // textBoxHelp
             // 
@@ -1277,26 +1302,6 @@
             this.labelLastLoaded.Size = new System.Drawing.Size(102, 13);
             this.labelLastLoaded.TabIndex = 9;
             this.labelLastLoaded.Text = "Currently loaded file:";
-            // 
-            // buttonSaveExcludes
-            // 
-            this.buttonSaveExcludes.Location = new System.Drawing.Point(12, 287);
-            this.buttonSaveExcludes.Name = "buttonSaveExcludes";
-            this.buttonSaveExcludes.Size = new System.Drawing.Size(291, 23);
-            this.buttonSaveExcludes.TabIndex = 4;
-            this.buttonSaveExcludes.Text = "Save to RandomizerSkip.cfg";
-            this.buttonSaveExcludes.UseVisualStyleBackColor = true;
-            this.buttonSaveExcludes.Click += new System.EventHandler(this.buttonSaveExcludes_Click);
-            // 
-            // buttonReloadExcludes
-            // 
-            this.buttonReloadExcludes.Location = new System.Drawing.Point(357, 287);
-            this.buttonReloadExcludes.Name = "buttonReloadExcludes";
-            this.buttonReloadExcludes.Size = new System.Drawing.Size(291, 23);
-            this.buttonReloadExcludes.TabIndex = 5;
-            this.buttonReloadExcludes.Text = "Reload RandomizerSkip.cfg";
-            this.buttonReloadExcludes.UseVisualStyleBackColor = true;
-            this.buttonReloadExcludes.Click += new System.EventHandler(this.buttonReloadExcludes_Click);
             // 
             // RandConfigForm
             // 

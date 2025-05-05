@@ -478,6 +478,7 @@ namespace obrandomizer_gui
 
         private void LoadTemplates()
         {
+            comboTemplates.Items.Clear();
             try
             {
                 if (!Directory.Exists("obrn-configs"))
@@ -504,7 +505,6 @@ namespace obrandomizer_gui
 
         private void LoadMods()
         {
-
             try
             {
                 if (Directory.Exists("Data"))
@@ -528,6 +528,8 @@ namespace obrandomizer_gui
         private void LoadExcludes(string fileName)
         {
             TextBox current = null;
+            textBoxDontAddToLists.Clear();
+            textBoxDontRandomize.Clear();
             try
             {
                 foreach (var line in File.ReadLines(fileName))
@@ -574,6 +576,21 @@ namespace obrandomizer_gui
             }
         }
 
+        private void SaveExcludes(string fileName)
+        {
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+            using (var output = new StreamWriter(fileName))
+            {
+                output.WriteLine("[DON'T ADD TO LISTS]");
+                output.WriteLine(textBoxDontAddToLists.Text);
+                output.WriteLine();
+                output.WriteLine("[DON'T RANDOMIZE]");
+                output.WriteLine(textBoxDontRandomize.Text);
+            }
+        }
 
         private void groupMiscSeed_MouseHover(object sender, EventArgs e)
         {
@@ -943,12 +960,40 @@ namespace obrandomizer_gui
 
         private void buttonSaveExcludes_Click(object sender, EventArgs e)
         {
-
+            SaveExcludes("Data/RandomizerSkip.cfg");
         }
 
         private void buttonReloadExcludes_Click(object sender, EventArgs e)
         {
+            LoadExcludes("Data/RandomizerSkip.cfg");
+        }
 
+        private void textBoxDontRandomize_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Objects from plugin files in this list will not be randomized.";
+        }
+
+        private void listMods_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "All .esp and .esm files from your Oblivion/Data directory should be listed here.\r\n\r\n" +
+                "If this list is empty, then it indicates that you have not installed the randomizer properly.";
+        }
+
+        private void buttonDontRandomizePaste_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Pressing this button will copy all selected items from \"Your mods\" and paste them here.";
+        }
+
+        private void textBoxDontAddToLists_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Objects from plugin files in this list will not be added to the randomizer's pool.\r\n\r\n" +
+                "For example, if you are playing a total conversion mod, you may want the randomizer not to randomize objects " +
+                "into vanilla Oblivion ones, thus you ought to put Oblivion.esm on this list.";
+        }
+
+        private void buttonDontAddToLists_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Pressing this button will copy all selected items from \"Your mods\" and paste them here.";
         }
     }
 }
