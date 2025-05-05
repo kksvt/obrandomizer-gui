@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Reflection;
 using Microsoft.Extensions.Configuration;
-using System.Windows.Forms.VisualStyles;
 using System.Globalization;
-using System.Net.Configuration;
 
 namespace obrandomizer_gui
 {
@@ -310,6 +302,7 @@ namespace obrandomizer_gui
                     "Config not found",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Application.Exit();
             } catch (Exception ex)
             {
                 MessageBox.Show($"Could not parse config file {fileName}. Exception message: {ex}",
@@ -559,13 +552,14 @@ namespace obrandomizer_gui
                     addItemToTextBox(current, line);
                 }
             }
-            catch (FileNotFoundException)
+            catch (Exception ex) when (ex is FileNotFoundException || ex is DirectoryNotFoundException)
             {
                 MessageBox.Show($"Config file {fileName} not found. Make sure the GUI application " +
                     "is in your Oblivion directory and the config is in your Oblivion/Data directory.",
                     "Config not found",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Application.Exit();
             }
             catch (Exception ex)
             {
