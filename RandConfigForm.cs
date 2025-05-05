@@ -24,27 +24,6 @@ namespace obrandomizer_gui
         public RandConfigForm()
         {
             InitializeComponent();
-            LoadSettings("Data/Randomizer.cfg");
-            try
-            {
-                if (!Directory.Exists("obrn-configs"))
-                {
-                    Directory.CreateDirectory("obrn-configs");
-                } else
-                {
-                    DirectoryInfo d = new DirectoryInfo($"{Directory.GetCurrentDirectory()}/obrn-configs");
-                    foreach (var template in d.GetFiles("*.cfg"))
-                    {
-                        comboTemplates.Items.Add($"{template.Name}");
-                    }
-                }
-            } catch (Exception ex)
-            {
-                buttonDeleteTemplate.Enabled = buttonSaveTemplate.Enabled = buttonLoadTemplate.Enabled =
-                    comboTemplates.Enabled = false;
-                MessageBox.Show($"Could not read template files. Exception: {ex}", "Error reading templates",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private static string DecimalSeparator = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
@@ -316,13 +295,14 @@ namespace obrandomizer_gui
 
                 if (invalidParses.Count > 0)
                 {
-                    string errorMsg = "Couldn't parse the following settings:";
+                    string errorMsg = "Could not parse the following settings:";
                     foreach (var msg in invalidParses)
                     {
                         errorMsg += $"\r\n{msg}";
                     }
                     MessageBox.Show(errorMsg, "Config parsing error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                labelLastLoaded.Text = $"Currently loaded file: {fileName}";
             } catch (FileNotFoundException)
             {
                 MessageBox.Show($"Config file {fileName} not found. Make sure the GUI application " +
@@ -332,7 +312,7 @@ namespace obrandomizer_gui
                     MessageBoxIcon.Error);
             } catch (Exception ex)
             {
-                MessageBox.Show($"Couldn't parse config file {fileName}. Exception message: {ex}",
+                MessageBox.Show($"Could not parse config file {fileName}. Exception message: {ex}",
                     "Invalid config",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
@@ -340,7 +320,8 @@ namespace obrandomizer_gui
 
         }
 
-        private void SaveSettings(string fileName) {
+        private void SaveSettings(string fileName) 
+        {
             if (File.Exists(fileName))
             {
                 File.Delete(fileName);
@@ -495,6 +476,105 @@ namespace obrandomizer_gui
             }
         }
 
+        private void LoadTemplates()
+        {
+            try
+            {
+                if (!Directory.Exists("obrn-configs"))
+                {
+                    Directory.CreateDirectory("obrn-configs");
+                }
+                else
+                {
+                    DirectoryInfo d = new DirectoryInfo($"{Directory.GetCurrentDirectory()}/obrn-configs");
+                    foreach (var template in d.GetFiles("*.cfg"))
+                    {
+                        comboTemplates.Items.Add($"{template.Name}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                buttonDeleteTemplate.Enabled = buttonSaveTemplate.Enabled = buttonLoadTemplate.Enabled =
+                    comboTemplates.Enabled = false;
+                MessageBox.Show($"Could not read template files. Exception: {ex}", "Error reading templates",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadMods()
+        {
+
+            try
+            {
+                if (Directory.Exists("Data"))
+                {
+                    DirectoryInfo d = new DirectoryInfo($"{Directory.GetCurrentDirectory()}/Data");
+                    foreach (var mod in d.GetFiles("*.esm").Union(d.GetFiles("*.esp")))
+                    {
+                        listMods.Items.Add(mod.Name);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                buttonDeleteTemplate.Enabled = buttonSaveTemplate.Enabled = buttonLoadTemplate.Enabled =
+                    comboTemplates.Enabled = false;
+                MessageBox.Show($"Could not read template files. Exception: {ex}", "Error reading templates",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadExcludes(string fileName)
+        {
+            TextBox current = null;
+            try
+            {
+                foreach (var line in File.ReadLines(fileName))
+                {
+                    if (line.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    if (line.Equals("[DON'T ADD TO LISTS]"))
+                    {
+                        current = textBoxDontAddToLists;
+                        continue;
+                    }
+
+                    if (line.Equals("[DON'T RANDOMIZE]"))
+                    {
+                        current = textBoxDontRandomize;
+                        continue;
+                    }
+
+                    if (current == null)
+                    {
+                        throw new FormatException("Mod name outside of a section");
+                    }
+
+                    addItemToTextBox(current, line);
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                MessageBox.Show($"Config file {fileName} not found. Make sure the GUI application " +
+                    "is in your Oblivion directory and the config is in your Oblivion/Data directory.",
+                    "Config not found",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Could not parse config file {fileName}. Exception message: {ex}",
+                    "Invalid config",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+        }
+
+
         private void groupMiscSeed_MouseHover(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Since the information about the randomization of world items, non-leveled list creatures " +
@@ -642,6 +722,10 @@ namespace obrandomizer_gui
         {
             textActorScalingMin.Text = $"0{DecimalSeparator}7"; //lol
             textActorScalingMax.Text = $"1{DecimalSeparator}5";
+            LoadSettings("Data/Randomizer.cfg");
+            LoadExcludes("Data/RandomizerSkip.cfg");
+            LoadTemplates();
+            LoadMods();
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
@@ -652,7 +736,6 @@ namespace obrandomizer_gui
         private void buttonLoad_Click(object sender, EventArgs e)
         {
             LoadSettings("Data/Randomizer.cfg");
-            comboTemplates.Text = "Data/Randomizer.cfg";
         }
 
         private void textActorScalingMin_Validating(object sender, CancelEventArgs e)
@@ -660,7 +743,7 @@ namespace obrandomizer_gui
             double min, max;
             if (!Double.TryParse(textActorScalingMin.Text, out min))
             {
-                errorProvider.SetError(textActorScalingMin, "Couldn't convert the input to a floating-point number.");
+                errorProvider.SetError(textActorScalingMin, "Could not convert the input to a floating-point number.");
                 textActorScalingMin.Focus();
                 buttonSave.Enabled = false;
                 return;
@@ -682,7 +765,7 @@ namespace obrandomizer_gui
             double min, max;
             if (!Double.TryParse(textActorScalingMax.Text, out max))
             {
-                errorProvider.SetError(textActorScalingMax, "Couldn't convert the input to a floating-point number.");
+                errorProvider.SetError(textActorScalingMax, "Could not convert the input to a floating-point number.");
                 textActorScalingMax.Focus();
                 buttonSave.Enabled = false;
                 return;
@@ -772,6 +855,100 @@ namespace obrandomizer_gui
                 "For example, selecting \"Chaos.cfg\" from the dropdown box and pressing \"Load template\" will load the chaos settings into the GUI. " +
                 "Then, pressing \"Save current settings to Randomizer.cfg\" will copy all settings from the \"Chaos.cfg\" template to the main config file, " +
                 "which will be used by the game.";
+        }
+
+        private void buttonLoad_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Loads settings from the main config file (Data/Randomizer.cfg).";
+        }
+
+        private void buttonSave_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "Saves current settings to the main config file (Data/Randomizer.cfg).";
+        }
+        
+        private void addItemToTextBox(TextBox tb, string item)
+        {
+            if (tb.Lines.Count(s => s.Equals(item, StringComparison.OrdinalIgnoreCase)) > 0)
+            {
+                return;
+            }
+
+            tb.AppendText($"{item}\r\n");
+        }
+
+        private void handleDragDropForTextbox(TextBox tb, DragEventArgs e)
+        {
+            List<string> mods = new List<string>();
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                mods.Add(e.Data.GetData(DataFormats.Text).ToString());
+            }
+            else
+            {
+                string[] s = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (var file in s)
+                {
+                    mods.Add(Path.GetFileName(file));
+                }
+            }
+
+            foreach (var file in mods)
+            {//i cannot believe that a textbox is unironically a preferable solution to a listbox
+                addItemToTextBox(tb, file);
+            }
+        }
+
+        private void listDontRandomize_DragDrop(object sender, DragEventArgs e)
+        {
+            handleDragDropForTextbox(textBoxDontRandomize, e);
+        }
+        private void textBoxDontAddToLists_DragDrop(object sender, DragEventArgs e)
+        {
+            handleDragDropForTextbox(textBoxDontAddToLists, e);
+        }
+
+        private void listDontRandomize_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text) ||
+                e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void buttonDontRandomizePaste_Click(object sender, EventArgs e)
+        {
+            foreach (var select in listMods.SelectedItems)
+            {
+                addItemToTextBox(textBoxDontRandomize, select.ToString());
+            }
+
+            listMods.SelectedItems.Clear();
+        }
+
+        private void buttonDontAddToLists_Click(object sender, EventArgs e)
+        {
+            foreach (var select in listMods.SelectedItems)
+            {
+                addItemToTextBox(textBoxDontAddToLists, select.ToString());
+            }
+
+            listMods.SelectedItems.Clear();
+        }
+
+        private void buttonSaveExcludes_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void buttonReloadExcludes_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

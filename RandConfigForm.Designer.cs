@@ -108,6 +108,15 @@
             this.radioRandCreaturesUnstable = new System.Windows.Forms.RadioButton();
             this.radioRandCreaturesEnabled = new System.Windows.Forms.RadioButton();
             this.radioRandCreaturesDisabled = new System.Windows.Forms.RadioButton();
+            this.tabExcludes = new System.Windows.Forms.TabPage();
+            this.groupDontAddToRandomizerLists = new System.Windows.Forms.GroupBox();
+            this.buttonDontAddToLists = new System.Windows.Forms.Button();
+            this.textBoxDontAddToLists = new System.Windows.Forms.TextBox();
+            this.groupDontRandomize = new System.Windows.Forms.GroupBox();
+            this.buttonDontRandomizePaste = new System.Windows.Forms.Button();
+            this.textBoxDontRandomize = new System.Windows.Forms.TextBox();
+            this.groupCurrentMods = new System.Windows.Forms.GroupBox();
+            this.listMods = new System.Windows.Forms.ListBox();
             this.textBoxHelp = new System.Windows.Forms.TextBox();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
@@ -117,6 +126,9 @@
             this.buttonSaveTemplate = new System.Windows.Forms.Button();
             this.buttonLoadTemplate = new System.Windows.Forms.Button();
             this.buttonDeleteTemplate = new System.Windows.Forms.Button();
+            this.labelLastLoaded = new System.Windows.Forms.Label();
+            this.buttonSaveExcludes = new System.Windows.Forms.Button();
+            this.buttonReloadExcludes = new System.Windows.Forms.Button();
             this.tabs.SuspendLayout();
             this.tabMiscSettings.SuspendLayout();
             this.groupMisc.SuspendLayout();
@@ -149,6 +161,10 @@
             this.groupUseEssentialCreatures.SuspendLayout();
             this.groupExcludeHorses.SuspendLayout();
             this.groupMiscRandCreatures.SuspendLayout();
+            this.tabExcludes.SuspendLayout();
+            this.groupDontAddToRandomizerLists.SuspendLayout();
+            this.groupDontRandomize.SuspendLayout();
+            this.groupCurrentMods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,6 +174,7 @@
             this.tabs.Controls.Add(this.tabLootSettings);
             this.tabs.Controls.Add(this.tabActorSettings);
             this.tabs.Controls.Add(this.tabCreatureSettings);
+            this.tabs.Controls.Add(this.tabExcludes);
             this.tabs.Location = new System.Drawing.Point(12, 12);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
@@ -1066,6 +1083,105 @@
             this.radioRandCreaturesDisabled.Text = "Disabled";
             this.radioRandCreaturesDisabled.UseVisualStyleBackColor = true;
             // 
+            // tabExcludes
+            // 
+            this.tabExcludes.Controls.Add(this.buttonReloadExcludes);
+            this.tabExcludes.Controls.Add(this.buttonSaveExcludes);
+            this.tabExcludes.Controls.Add(this.groupDontAddToRandomizerLists);
+            this.tabExcludes.Controls.Add(this.groupDontRandomize);
+            this.tabExcludes.Controls.Add(this.groupCurrentMods);
+            this.tabExcludes.Location = new System.Drawing.Point(4, 22);
+            this.tabExcludes.Name = "tabExcludes";
+            this.tabExcludes.Size = new System.Drawing.Size(668, 336);
+            this.tabExcludes.TabIndex = 4;
+            this.tabExcludes.Text = "Mod excludes";
+            this.tabExcludes.UseVisualStyleBackColor = true;
+            // 
+            // groupDontAddToRandomizerLists
+            // 
+            this.groupDontAddToRandomizerLists.Controls.Add(this.buttonDontAddToLists);
+            this.groupDontAddToRandomizerLists.Controls.Add(this.textBoxDontAddToLists);
+            this.groupDontAddToRandomizerLists.Location = new System.Drawing.Point(448, 6);
+            this.groupDontAddToRandomizerLists.Name = "groupDontAddToRandomizerLists";
+            this.groupDontAddToRandomizerLists.Size = new System.Drawing.Size(200, 258);
+            this.groupDontAddToRandomizerLists.TabIndex = 3;
+            this.groupDontAddToRandomizerLists.TabStop = false;
+            this.groupDontAddToRandomizerLists.Text = "Don\'t add to lists";
+            // 
+            // buttonDontAddToLists
+            // 
+            this.buttonDontAddToLists.Location = new System.Drawing.Point(6, 229);
+            this.buttonDontAddToLists.Name = "buttonDontAddToLists";
+            this.buttonDontAddToLists.Size = new System.Drawing.Size(188, 23);
+            this.buttonDontAddToLists.TabIndex = 3;
+            this.buttonDontAddToLists.Text = "Paste selection from \"Your mods\"";
+            this.buttonDontAddToLists.UseVisualStyleBackColor = true;
+            this.buttonDontAddToLists.Click += new System.EventHandler(this.buttonDontAddToLists_Click);
+            // 
+            // textBoxDontAddToLists
+            // 
+            this.textBoxDontAddToLists.AllowDrop = true;
+            this.textBoxDontAddToLists.Location = new System.Drawing.Point(7, 19);
+            this.textBoxDontAddToLists.Multiline = true;
+            this.textBoxDontAddToLists.Name = "textBoxDontAddToLists";
+            this.textBoxDontAddToLists.Size = new System.Drawing.Size(187, 204);
+            this.textBoxDontAddToLists.TabIndex = 2;
+            this.textBoxDontAddToLists.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxDontAddToLists_DragDrop);
+            this.textBoxDontAddToLists.DragEnter += new System.Windows.Forms.DragEventHandler(this.listDontRandomize_DragEnter);
+            // 
+            // groupDontRandomize
+            // 
+            this.groupDontRandomize.Controls.Add(this.buttonDontRandomizePaste);
+            this.groupDontRandomize.Controls.Add(this.textBoxDontRandomize);
+            this.groupDontRandomize.Location = new System.Drawing.Point(228, 6);
+            this.groupDontRandomize.Name = "groupDontRandomize";
+            this.groupDontRandomize.Size = new System.Drawing.Size(200, 258);
+            this.groupDontRandomize.TabIndex = 2;
+            this.groupDontRandomize.TabStop = false;
+            this.groupDontRandomize.Text = "Don\'t randomize";
+            // 
+            // buttonDontRandomizePaste
+            // 
+            this.buttonDontRandomizePaste.Location = new System.Drawing.Point(6, 229);
+            this.buttonDontRandomizePaste.Name = "buttonDontRandomizePaste";
+            this.buttonDontRandomizePaste.Size = new System.Drawing.Size(188, 23);
+            this.buttonDontRandomizePaste.TabIndex = 1;
+            this.buttonDontRandomizePaste.Text = "Paste selection from \"Your mods\"";
+            this.buttonDontRandomizePaste.UseVisualStyleBackColor = true;
+            this.buttonDontRandomizePaste.Click += new System.EventHandler(this.buttonDontRandomizePaste_Click);
+            // 
+            // textBoxDontRandomize
+            // 
+            this.textBoxDontRandomize.AllowDrop = true;
+            this.textBoxDontRandomize.Location = new System.Drawing.Point(7, 19);
+            this.textBoxDontRandomize.Multiline = true;
+            this.textBoxDontRandomize.Name = "textBoxDontRandomize";
+            this.textBoxDontRandomize.Size = new System.Drawing.Size(187, 204);
+            this.textBoxDontRandomize.TabIndex = 0;
+            this.textBoxDontRandomize.DragDrop += new System.Windows.Forms.DragEventHandler(this.listDontRandomize_DragDrop);
+            this.textBoxDontRandomize.DragEnter += new System.Windows.Forms.DragEventHandler(this.listDontRandomize_DragEnter);
+            // 
+            // groupCurrentMods
+            // 
+            this.groupCurrentMods.Controls.Add(this.listMods);
+            this.groupCurrentMods.Location = new System.Drawing.Point(6, 6);
+            this.groupCurrentMods.Name = "groupCurrentMods";
+            this.groupCurrentMods.Size = new System.Drawing.Size(200, 258);
+            this.groupCurrentMods.TabIndex = 1;
+            this.groupCurrentMods.TabStop = false;
+            this.groupCurrentMods.Text = "Your mods";
+            // 
+            // listMods
+            // 
+            this.listMods.AllowDrop = true;
+            this.listMods.FormattingEnabled = true;
+            this.listMods.Location = new System.Drawing.Point(6, 19);
+            this.listMods.Name = "listMods";
+            this.listMods.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            this.listMods.Size = new System.Drawing.Size(188, 225);
+            this.listMods.Sorted = true;
+            this.listMods.TabIndex = 2;
+            // 
             // textBoxHelp
             // 
             this.textBoxHelp.Location = new System.Drawing.Point(695, 34);
@@ -1077,23 +1193,25 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Location = new System.Drawing.Point(16, 380);
+            this.buttonSave.Location = new System.Drawing.Point(426, 379);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(258, 23);
+            this.buttonSave.Size = new System.Drawing.Size(126, 23);
             this.buttonSave.TabIndex = 2;
-            this.buttonSave.Text = "Save current settings to Randomizer.cfg";
+            this.buttonSave.Text = "Save to main config";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            this.buttonSave.MouseHover += new System.EventHandler(this.buttonSave_MouseHover);
             // 
             // buttonLoad
             // 
-            this.buttonLoad.Location = new System.Drawing.Point(432, 380);
+            this.buttonLoad.Location = new System.Drawing.Point(558, 379);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(256, 23);
+            this.buttonLoad.Size = new System.Drawing.Size(126, 23);
             this.buttonLoad.TabIndex = 3;
-            this.buttonLoad.Text = "Load settings from Randomizer.cfg";
+            this.buttonLoad.Text = "Load from main config";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
+            this.buttonLoad.MouseHover += new System.EventHandler(this.buttonLoad_MouseHover);
             // 
             // errorProvider
             // 
@@ -1151,20 +1269,53 @@
             this.buttonDeleteTemplate.Click += new System.EventHandler(this.buttonDeleteTemplate_Click);
             this.buttonDeleteTemplate.MouseHover += new System.EventHandler(this.labelTemplates_MouseHover);
             // 
+            // labelLastLoaded
+            // 
+            this.labelLastLoaded.AutoSize = true;
+            this.labelLastLoaded.Location = new System.Drawing.Point(13, 384);
+            this.labelLastLoaded.Name = "labelLastLoaded";
+            this.labelLastLoaded.Size = new System.Drawing.Size(102, 13);
+            this.labelLastLoaded.TabIndex = 9;
+            this.labelLastLoaded.Text = "Currently loaded file:";
+            // 
+            // buttonSaveExcludes
+            // 
+            this.buttonSaveExcludes.Location = new System.Drawing.Point(12, 287);
+            this.buttonSaveExcludes.Name = "buttonSaveExcludes";
+            this.buttonSaveExcludes.Size = new System.Drawing.Size(291, 23);
+            this.buttonSaveExcludes.TabIndex = 4;
+            this.buttonSaveExcludes.Text = "Save to RandomizerSkip.cfg";
+            this.buttonSaveExcludes.UseVisualStyleBackColor = true;
+            this.buttonSaveExcludes.Click += new System.EventHandler(this.buttonSaveExcludes_Click);
+            // 
+            // buttonReloadExcludes
+            // 
+            this.buttonReloadExcludes.Location = new System.Drawing.Point(357, 287);
+            this.buttonReloadExcludes.Name = "buttonReloadExcludes";
+            this.buttonReloadExcludes.Size = new System.Drawing.Size(291, 23);
+            this.buttonReloadExcludes.TabIndex = 5;
+            this.buttonReloadExcludes.Text = "Reload RandomizerSkip.cfg";
+            this.buttonReloadExcludes.UseVisualStyleBackColor = true;
+            this.buttonReloadExcludes.Click += new System.EventHandler(this.buttonReloadExcludes_Click);
+            // 
             // RandConfigForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(965, 425);
+            this.Controls.Add(this.labelLastLoaded);
+            this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.buttonDeleteTemplate);
             this.Controls.Add(this.buttonLoadTemplate);
             this.Controls.Add(this.buttonSaveTemplate);
             this.Controls.Add(this.labelTemplates);
             this.Controls.Add(this.comboTemplates);
-            this.Controls.Add(this.buttonLoad);
             this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxHelp);
             this.Controls.Add(this.tabs);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(981, 464);
+            this.MinimumSize = new System.Drawing.Size(981, 464);
             this.Name = "RandConfigForm";
             this.Text = "Oblivion Randomizer Config";
             this.Load += new System.EventHandler(this.RandConfigForm_Load);
@@ -1219,6 +1370,12 @@
             this.groupExcludeHorses.PerformLayout();
             this.groupMiscRandCreatures.ResumeLayout(false);
             this.groupMiscRandCreatures.PerformLayout();
+            this.tabExcludes.ResumeLayout(false);
+            this.groupDontAddToRandomizerLists.ResumeLayout(false);
+            this.groupDontAddToRandomizerLists.PerformLayout();
+            this.groupDontRandomize.ResumeLayout(false);
+            this.groupDontRandomize.PerformLayout();
+            this.groupCurrentMods.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1315,6 +1472,18 @@
         private System.Windows.Forms.Button buttonSaveTemplate;
         private System.Windows.Forms.Button buttonLoadTemplate;
         private System.Windows.Forms.Button buttonDeleteTemplate;
+        private System.Windows.Forms.Label labelLastLoaded;
+        private System.Windows.Forms.TabPage tabExcludes;
+        private System.Windows.Forms.GroupBox groupCurrentMods;
+        private System.Windows.Forms.ListBox listMods;
+        private System.Windows.Forms.GroupBox groupDontAddToRandomizerLists;
+        private System.Windows.Forms.GroupBox groupDontRandomize;
+        private System.Windows.Forms.TextBox textBoxDontRandomize;
+        private System.Windows.Forms.Button buttonDontRandomizePaste;
+        private System.Windows.Forms.Button buttonDontAddToLists;
+        private System.Windows.Forms.TextBox textBoxDontAddToLists;
+        private System.Windows.Forms.Button buttonReloadExcludes;
+        private System.Windows.Forms.Button buttonSaveExcludes;
     }
 }
 
