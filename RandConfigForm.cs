@@ -223,6 +223,7 @@ namespace obrandomizer_gui
                     invalidParses.Add("oRandomizeAttrib");
                 }
 
+                checkRandomizeStats.Checked = StringToBool(section["oRandomizeStats"]);
                 radioRestoreActorAttribNo.Checked = !(radioRestoreActorAttribYes.Checked = StringToBool(section["oRestoreBaseAttributes"]));
 
                 if (Int32.TryParse(section["oVampire"], out n))
@@ -438,7 +439,7 @@ namespace obrandomizer_gui
                 {
                     output.WriteLine("oRandomizeAttrib=0");
                 }
-
+                output.WriteLine("oRandomizeStats=" + (checkRandomizeStats.Checked ? "1" : "0"));
                 //restore attributes
                 output.WriteLine("oRestoreBaseAttributes=" + (radioRestoreActorAttribYes.Checked ? "1" : "0"));
                 //vampirism
@@ -651,7 +652,7 @@ namespace obrandomizer_gui
         private void groupLootWorldItem_MouseHover(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of items freely spawned in the world (such as a bowl lying on a table). Note that " +
-                "world item randomization is not stored in your save file, so use a fixed seed if you wish them to be randomized into the same items every time." +
+                "world item randomization is not stored in your save file, so use a fixed seed if you wish for them to be randomized into the same items every time." +
                 "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Enabled, normal - every item will get randomized into an item of the same type (for example a helmet " +
                 "may only get randomized into another helmet),\r\n\r\n- Enabled, aggressive - every item will get randomized into an item of any type.";
         }
@@ -681,7 +682,8 @@ namespace obrandomizer_gui
         {
             textBoxHelp.Text = "This setting controls the randomization of actor parameters. The parameters include aggression, confidence and responsibility." +
                 "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " + 
-                "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.";
+                "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.\r\n\r\n - Randomize stats - " +
+                "also randomize basic attributes (strength, dexterity...) and skills (blade, blunt...).";
         }
 
         private void groupNPCRestoreAttributes_MouseHover(object sender, EventArgs e)

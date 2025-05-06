@@ -129,6 +129,7 @@
             buttonLoadTemplate = new System.Windows.Forms.Button();
             buttonDeleteTemplate = new System.Windows.Forms.Button();
             labelLastLoaded = new System.Windows.Forms.Label();
+            checkRandomizeStats = new System.Windows.Forms.CheckBox();
             tabs.SuspendLayout();
             tabMiscSettings.SuspendLayout();
             groupMisc.SuspendLayout();
@@ -941,6 +942,7 @@
             // 
             // groupNPCRandomizeAttributes
             // 
+            groupNPCRandomizeAttributes.Controls.Add(checkRandomizeStats);
             groupNPCRandomizeAttributes.Controls.Add(radioAttribAll);
             groupNPCRandomizeAttributes.Controls.Add(radioAttribNonEssential);
             groupNPCRandomizeAttributes.Controls.Add(radioAttribDisabled);
@@ -948,7 +950,7 @@
             groupNPCRandomizeAttributes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupNPCRandomizeAttributes.Name = "groupNPCRandomizeAttributes";
             groupNPCRandomizeAttributes.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupNPCRandomizeAttributes.Size = new System.Drawing.Size(218, 104);
+            groupNPCRandomizeAttributes.Size = new System.Drawing.Size(218, 133);
             groupNPCRandomizeAttributes.TabIndex = 7;
             groupNPCRandomizeAttributes.TabStop = false;
             groupNPCRandomizeAttributes.Text = "Actor attribute randomization";
@@ -1412,6 +1414,16 @@
             labelLastLoaded.TabIndex = 9;
             labelLastLoaded.Text = "Currently loaded file:";
             // 
+            // checkRandomizeStats
+            // 
+            checkRandomizeStats.AutoSize = true;
+            checkRandomizeStats.Location = new System.Drawing.Point(8, 93);
+            checkRandomizeStats.Name = "checkRandomizeStats";
+            checkRandomizeStats.Size = new System.Drawing.Size(112, 19);
+            checkRandomizeStats.TabIndex = 3;
+            checkRandomizeStats.Text = "Randomize stats";
+            checkRandomizeStats.UseVisualStyleBackColor = true;
+            // 
             // RandConfigForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1599,6 +1611,7 @@
         private System.Windows.Forms.TextBox textBoxDontAddToLists;
         private System.Windows.Forms.Button buttonReloadExcludes;
         private System.Windows.Forms.Button buttonSaveExcludes;
+        private System.Windows.Forms.CheckBox checkRandomizeStats;
     }
 }
 
