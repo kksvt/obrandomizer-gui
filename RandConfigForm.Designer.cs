@@ -841,7 +841,7 @@
             groupNPCRandomizeStats.Size = new System.Drawing.Size(218, 104);
             groupNPCRandomizeStats.TabIndex = 10;
             groupNPCRandomizeStats.TabStop = false;
-            groupNPCRandomizeStats.Text = "Actor attribute randomization";
+            groupNPCRandomizeStats.Text = "Actor stat randomization";
             groupNPCRandomizeStats.MouseHover += groupNPCRandomizeStats_MouseHover;
             // 
             // radioStatAll

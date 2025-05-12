@@ -460,7 +460,7 @@ namespace obrandomizer_gui
                 }
                 else
                 {
-                    output.WriteLine("oRandomizeStat=0");
+                    output.WriteLine("oRandomizeStats=0");
                 }
                 //restore attributes
                 output.WriteLine("oRestoreBaseAttributes=" + (radioRestoreActorAttribYes.Checked ? "1" : "0"));
