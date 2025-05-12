@@ -80,6 +80,10 @@
             radioRandActorInventoryDisabled = new System.Windows.Forms.RadioButton();
             tabActorSettings = new System.Windows.Forms.TabPage();
             groupActors = new System.Windows.Forms.GroupBox();
+            groupNPCRandomizeStats = new System.Windows.Forms.GroupBox();
+            radioStatAll = new System.Windows.Forms.RadioButton();
+            radioStatNonEssential = new System.Windows.Forms.RadioButton();
+            radioStatDisabled = new System.Windows.Forms.RadioButton();
             groupNPCActorScaling = new System.Windows.Forms.GroupBox();
             checkActorScaling = new System.Windows.Forms.CheckBox();
             panelActorScaling = new System.Windows.Forms.Panel();
@@ -129,7 +133,6 @@
             buttonLoadTemplate = new System.Windows.Forms.Button();
             buttonDeleteTemplate = new System.Windows.Forms.Button();
             labelLastLoaded = new System.Windows.Forms.Label();
-            checkRandomizeStats = new System.Windows.Forms.CheckBox();
             tabs.SuspendLayout();
             tabMiscSettings.SuspendLayout();
             groupMisc.SuspendLayout();
@@ -151,6 +154,7 @@
             groupLootRandActorInventory.SuspendLayout();
             tabActorSettings.SuspendLayout();
             groupActors.SuspendLayout();
+            groupNPCRandomizeStats.SuspendLayout();
             groupNPCActorScaling.SuspendLayout();
             panelActorScaling.SuspendLayout();
             groupNPCRestoreAttributes.SuspendLayout();
@@ -811,6 +815,7 @@
             // groupActors
             // 
             groupActors.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            groupActors.Controls.Add(groupNPCRandomizeStats);
             groupActors.Controls.Add(groupNPCActorScaling);
             groupActors.Controls.Add(groupNPCRestoreAttributes);
             groupActors.Controls.Add(groupNPCRandomizeAttributes);
@@ -819,10 +824,60 @@
             groupActors.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupActors.Name = "groupActors";
             groupActors.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupActors.Size = new System.Drawing.Size(765, 188);
+            groupActors.Size = new System.Drawing.Size(765, 352);
             groupActors.TabIndex = 1;
             groupActors.TabStop = false;
             groupActors.Text = "Actor parameters";
+            // 
+            // groupNPCRandomizeStats
+            // 
+            groupNPCRandomizeStats.Controls.Add(radioStatAll);
+            groupNPCRandomizeStats.Controls.Add(radioStatNonEssential);
+            groupNPCRandomizeStats.Controls.Add(radioStatDisabled);
+            groupNPCRandomizeStats.Location = new System.Drawing.Point(8, 132);
+            groupNPCRandomizeStats.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupNPCRandomizeStats.Name = "groupNPCRandomizeStats";
+            groupNPCRandomizeStats.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            groupNPCRandomizeStats.Size = new System.Drawing.Size(218, 104);
+            groupNPCRandomizeStats.TabIndex = 10;
+            groupNPCRandomizeStats.TabStop = false;
+            groupNPCRandomizeStats.Text = "Actor attribute randomization";
+            groupNPCRandomizeStats.MouseHover += groupNPCRandomizeStats_MouseHover;
+            // 
+            // radioStatAll
+            // 
+            radioStatAll.AutoSize = true;
+            radioStatAll.Location = new System.Drawing.Point(9, 68);
+            radioStatAll.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioStatAll.Name = "radioStatAll";
+            radioStatAll.Size = new System.Drawing.Size(100, 19);
+            radioStatAll.TabIndex = 2;
+            radioStatAll.Text = "Enabled for all";
+            radioStatAll.UseVisualStyleBackColor = true;
+            // 
+            // radioStatNonEssential
+            // 
+            radioStatNonEssential.AutoSize = true;
+            radioStatNonEssential.Checked = true;
+            radioStatNonEssential.Location = new System.Drawing.Point(9, 45);
+            radioStatNonEssential.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioStatNonEssential.Name = "radioStatNonEssential";
+            radioStatNonEssential.Size = new System.Drawing.Size(177, 19);
+            radioStatNonEssential.TabIndex = 1;
+            radioStatNonEssential.TabStop = true;
+            radioStatNonEssential.Text = "Only for non-essential actors";
+            radioStatNonEssential.UseVisualStyleBackColor = true;
+            // 
+            // radioStatDisabled
+            // 
+            radioStatDisabled.AutoSize = true;
+            radioStatDisabled.Location = new System.Drawing.Point(9, 23);
+            radioStatDisabled.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            radioStatDisabled.Name = "radioStatDisabled";
+            radioStatDisabled.Size = new System.Drawing.Size(70, 19);
+            radioStatDisabled.TabIndex = 0;
+            radioStatDisabled.Text = "Disabled";
+            radioStatDisabled.UseVisualStyleBackColor = true;
             // 
             // groupNPCActorScaling
             // 
@@ -942,7 +997,6 @@
             // 
             // groupNPCRandomizeAttributes
             // 
-            groupNPCRandomizeAttributes.Controls.Add(checkRandomizeStats);
             groupNPCRandomizeAttributes.Controls.Add(radioAttribAll);
             groupNPCRandomizeAttributes.Controls.Add(radioAttribNonEssential);
             groupNPCRandomizeAttributes.Controls.Add(radioAttribDisabled);
@@ -950,7 +1004,7 @@
             groupNPCRandomizeAttributes.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupNPCRandomizeAttributes.Name = "groupNPCRandomizeAttributes";
             groupNPCRandomizeAttributes.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupNPCRandomizeAttributes.Size = new System.Drawing.Size(218, 133);
+            groupNPCRandomizeAttributes.Size = new System.Drawing.Size(218, 102);
             groupNPCRandomizeAttributes.TabIndex = 7;
             groupNPCRandomizeAttributes.TabStop = false;
             groupNPCRandomizeAttributes.Text = "Actor attribute randomization";
@@ -1414,16 +1468,6 @@
             labelLastLoaded.TabIndex = 9;
             labelLastLoaded.Text = "Currently loaded file:";
             // 
-            // checkRandomizeStats
-            // 
-            checkRandomizeStats.AutoSize = true;
-            checkRandomizeStats.Location = new System.Drawing.Point(8, 93);
-            checkRandomizeStats.Name = "checkRandomizeStats";
-            checkRandomizeStats.Size = new System.Drawing.Size(112, 19);
-            checkRandomizeStats.TabIndex = 3;
-            checkRandomizeStats.Text = "Randomize stats";
-            checkRandomizeStats.UseVisualStyleBackColor = true;
-            // 
             // RandConfigForm
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -1479,6 +1523,8 @@
             groupLootRandActorInventory.PerformLayout();
             tabActorSettings.ResumeLayout(false);
             groupActors.ResumeLayout(false);
+            groupNPCRandomizeStats.ResumeLayout(false);
+            groupNPCRandomizeStats.PerformLayout();
             groupNPCActorScaling.ResumeLayout(false);
             groupNPCActorScaling.PerformLayout();
             panelActorScaling.ResumeLayout(false);
@@ -1612,6 +1658,10 @@
         private System.Windows.Forms.Button buttonReloadExcludes;
         private System.Windows.Forms.Button buttonSaveExcludes;
         private System.Windows.Forms.CheckBox checkRandomizeStats;
+        private System.Windows.Forms.GroupBox groupNPCRandomizeStats;
+        private System.Windows.Forms.RadioButton radioStatAll;
+        private System.Windows.Forms.RadioButton radioStatNonEssential;
+        private System.Windows.Forms.RadioButton radioStatDisabled;
     }
 }
 

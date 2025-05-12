@@ -10,9 +10,9 @@ using System.Globalization;
 
 namespace obrandomizer_gui
 {
-    public partial class RandConfigForm: Form
+    public partial class RandConfigForm : Form
     {
-        
+
         public RandConfigForm()
         {
             InitializeComponent();
@@ -53,7 +53,7 @@ namespace obrandomizer_gui
             return false;
         }
 
-        private static bool StringIntToThreeRadioBoxes(string value, 
+        private static bool StringIntToThreeRadioBoxes(string value,
             RadioButton zero, RadioButton one, RadioButton two)
         {
             bool success = false;
@@ -61,7 +61,8 @@ namespace obrandomizer_gui
             if (Int32.TryParse(value, out int n))
             {
                 success = true;
-            } else
+            }
+            else
             {
                 n = 0;
             }
@@ -223,7 +224,14 @@ namespace obrandomizer_gui
                     invalidParses.Add("oRandomizeAttrib");
                 }
 
-                checkRandomizeStats.Checked = StringToBool(section["oRandomizeStats"]);
+                if (!StringIntToThreeRadioBoxes(section["oRandomizeStats"],
+                    radioStatDisabled,
+                    radioStatNonEssential,
+                    radioStatAll))
+                {
+                    invalidParses.Add("oRandomizeStats");
+                }
+
                 radioRestoreActorAttribNo.Checked = !(radioRestoreActorAttribYes.Checked = StringToBool(section["oRestoreBaseAttributes"]));
 
                 if (Int32.TryParse(section["oVampire"], out n))
@@ -243,7 +251,7 @@ namespace obrandomizer_gui
                     {
                         invalidParses.Add("oScaleMin");
                         textActorScalingMin.Text = $"{0.7}";
-                    } 
+                    }
                     else
                     {
                         textActorScalingMin.Text = $"{d}";
@@ -296,15 +304,17 @@ namespace obrandomizer_gui
                     MessageBox.Show(errorMsg, "Config parsing error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 labelLastLoaded.Text = $"Currently loaded file: {fileName}";
-            } catch (FileNotFoundException)
+            }
+            catch (FileNotFoundException)
             {
                 MessageBox.Show($"Config file {fileName} not found. Make sure the GUI application " +
-                    "is in your Oblivion directory and the config is in your Oblivion/Data directory.", 
+                    "is in your Oblivion directory and the config is in your Oblivion/Data directory.",
                     "Config not found",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 Application.Exit();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Could not parse config file {fileName}. Exception message: {ex}",
                     "Invalid config",
@@ -314,7 +324,7 @@ namespace obrandomizer_gui
 
         }
 
-        private void SaveSettings(string fileName) 
+        private void SaveSettings(string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -341,11 +351,11 @@ namespace obrandomizer_gui
                 if (radioSpellsDisabled.Checked)
                 {
                     output.WriteLine("oRandSpells=0");
-                } 
+                }
                 else if (radioSpells1.Checked)
                 {
                     output.WriteLine("oRandSpells=1");
-                } 
+                }
                 else //if (radioSpells2.Checked)
                 {
                     output.WriteLine("oRandSpells=2");
@@ -356,11 +366,11 @@ namespace obrandomizer_gui
                 if (radioRandActorInventoryDisabled.Checked)
                 {
                     output.WriteLine("oRandInventory=0");
-                } 
+                }
                 else if (radioRandActorInventoryEnabled.Checked)
                 {
                     output.WriteLine("oRandInventory=1");
-                } 
+                }
                 else //if (radioRandActorInventoryAggressive.Checked)
                 {
                     output.WriteLine("oRandInventory=2");
@@ -434,12 +444,24 @@ namespace obrandomizer_gui
                 else if (radioAttribNonEssential.Checked)
                 {
                     output.WriteLine("oRandomizeAttrib=1");
-                } 
+                }
                 else
                 {
                     output.WriteLine("oRandomizeAttrib=0");
                 }
-                output.WriteLine("oRandomizeStats=" + (checkRandomizeStats.Checked ? "1" : "0"));
+
+                if (radioStatAll.Checked)
+                {
+                    output.WriteLine("oRandomizeStats=2");
+                }
+                else if (radioStatNonEssential.Checked)
+                {
+                    output.WriteLine("oRandomizeStats=1");
+                }
+                else
+                {
+                    output.WriteLine("oRandomizeStat=0");
+                }
                 //restore attributes
                 output.WriteLine("oRestoreBaseAttributes=" + (radioRestoreActorAttribYes.Checked ? "1" : "0"));
                 //vampirism
@@ -659,9 +681,9 @@ namespace obrandomizer_gui
 
         private void groupLootAddItem_MouseHover(object sender, EventArgs e)
         {
-            textBoxHelp.Text = "This setting controls the randomization of items given to the player through scripts, such as \"The Warp in the West\" book, which " + 
-                "one receives from Brother Piner.\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Enabled, normal - every item will get randomized into an item of the " + 
-                "same type (for example a helmet may only get randomized into another helmet),\r\n\r\n- Enabled, aggressive - every item will get randomized into an " + 
+            textBoxHelp.Text = "This setting controls the randomization of items given to the player through scripts, such as \"The Warp in the West\" book, which " +
+                "one receives from Brother Piner.\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Enabled, normal - every item will get randomized into an item of the " +
+                "same type (for example a helmet may only get randomized into another helmet),\r\n\r\n- Enabled, aggressive - every item will get randomized into an " +
                 "item of any type.";
         }
 
@@ -681,9 +703,14 @@ namespace obrandomizer_gui
         private void groupNPCRandomizeAttributes_MouseHover(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of actor parameters. The parameters include aggression, confidence and responsibility." +
-                "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " + 
-                "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.\r\n\r\n - Randomize stats - " +
-                "also randomize basic attributes (strength, dexterity...) and skills (blade, blunt...).";
+                "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " +
+                "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.";
+        }
+        private void groupNPCRandomizeStats_MouseHover(object sender, EventArgs e)
+        {
+            textBoxHelp.Text = "This setting controls the randomization of actor stats. The parameters include basic attributes (such as strength, dexterity, " +
+                "endurance) and skills (blade, blunt, block...).\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " +
+                "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.";
         }
 
         private void groupNPCRestoreAttributes_MouseHover(object sender, EventArgs e)
@@ -706,7 +733,7 @@ namespace obrandomizer_gui
         {
             textBoxHelp.Text = "This setting controls creature randomization. Note that creatures spawned from leveled lists are randomized only on spawn AND stored " +
                 "in the save file, whereas other creatures are randomized every time you launch the game, so use a fixed seed if you wish them to be randomized into " +
-                "the same creatures every time.\r\n\r\n- Disabled - don't randomize creatures,\r\n\r\n- Enabled, normal - randomize leveled-list creatures on spawn " + 
+                "the same creatures every time.\r\n\r\n- Disabled - don't randomize creatures,\r\n\r\n- Enabled, normal - randomize leveled-list creatures on spawn " +
                 "and other creatures on every launch,\r\n\r\n- Enabled, unstable - re-randomize leveled-list creatures on load. This is a highly unstable option " +
                 "and it is recommended that you don't enable it.";
         }
@@ -726,7 +753,7 @@ namespace obrandomizer_gui
 
         private void groupLootExcludeUnplayableItems_MouseHover(object sender, EventArgs e)
         {
-            textBoxHelp.Text = "If enabled, this setting will cause items marked as unplayable to be excluded from the randomization process.\r\n\r\n" + 
+            textBoxHelp.Text = "If enabled, this setting will cause items marked as unplayable to be excluded from the randomization process.\r\n\r\n" +
                 "In vanilla, these are typically items that the game does not want the player to wear for plot reasons (such as Emperor Uriel Septim's robe), " +
                 "but custom mods may use this feature to handle some internal logic and potentially break if these are randomized from or into something else.";
         }
@@ -854,7 +881,8 @@ namespace obrandomizer_gui
                 File.Delete(path);
                 comboTemplates.Items.Remove(comboTemplates.Text);
                 comboTemplates.SelectedIndex = -1;
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show($"Could not delete the template file. Exception: {ex}", "Delete template",
                  MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -879,7 +907,7 @@ namespace obrandomizer_gui
         {
             textBoxHelp.Text = "Saves current settings to the main config file (Data/Randomizer.cfg).";
         }
-        
+
         private void addItemToTextBox(TextBox tb, string item)
         {
             if (tb.Lines.Count(s => s.Equals(item, StringComparison.OrdinalIgnoreCase)) > 0)
@@ -991,5 +1019,6 @@ namespace obrandomizer_gui
         {
             textBoxHelp.Text = "Pressing this button will copy all selected items from \"Your mods\" and paste them here.";
         }
+
     }
 }
