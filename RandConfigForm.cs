@@ -125,6 +125,7 @@ namespace obrandomizer_gui
                 oRandSpells=1*/
                 IConfigurationSection section = config.GetSection("Misc");
                 textBoxMiscSeed.Text = section["oSeed"];
+                checkSaveSeedData.Checked = StringToBool(section["oSaveSeedData"]);
                 radioExcludeQuestNo.Checked = !(radioExcludeQuestYes.Checked = StringToBool(section["oExcludeQuestItems"]));
                 radioDelayStartNo.Checked = !(radioDelayStartYes.Checked = StringToBool(section["oDelayStart"]));
                 if (Int32.TryParse(section["oInstallCrashFix"], out n))
@@ -336,6 +337,14 @@ namespace obrandomizer_gui
                 //Misc
                 output.WriteLine("[Misc]");
                 output.WriteLine("oSeed=" + textBoxMiscSeed.Text);
+                if (checkSaveSeedData.Checked)
+                {
+                    output.WriteLine("oSaveSeedData=1");
+                }
+                else
+                {
+                    output.WriteLine("oSaveSeedData=0");
+                }
                 output.WriteLine("oExcludeQuestItems=" + (radioExcludeQuestYes.Checked ? "1" : "0"));
                 output.WriteLine("oDelayStart=" + (radioDelayStartYes.Checked ? "1" : "0"));
                 if (checkInvalidTexturePatch.Checked)
@@ -613,9 +622,13 @@ namespace obrandomizer_gui
         {
             textBoxHelp.Text = "Since the information about the randomization of world items, non-leveled list creatures " +
                 "and spells is not stored in the save file, they will get re-randomized every time you launch the game.\r\n\r\n" +
-                "Selecting a fixed seed will cause them to get randomized into the same objects " +
-                "every time, allowing a consistent experience across one playthrough.\r\n\r\n" +
-                "Leave the field empty if you want the game to generate a new random seed every launch.";
+                "Due to how Oblivion handles constructing references, a fixed seed may not always yield the same randomizations, " +
+                "but it should provide a more consistent experience nonetheless.\r\n\r\n" +
+                "Leave the field empty if you want the game to generate a new random seed every launch.\r\n\r\n" +
+                "Save seed data - if the seed is not empty and this option is enabled, then creature & world item randomization data " +
+                "will be saved to Oblivion/obrn-seed-data/<seed value>.bin. While it guarantees creatures and world items to be " +
+                "randomized into the same objects every time you restart the game, you should keep in mind that this is an " +
+                "experimental feature.";
         }
 
         private void groupMiscQuestObjects_MouseHover(object sender, EventArgs e)
@@ -1020,5 +1033,9 @@ namespace obrandomizer_gui
             textBoxHelp.Text = "Pressing this button will copy all selected items from \"Your mods\" and paste them here.";
         }
 
+        private void textBoxMiscSeed_TextChanged(object sender, EventArgs e)
+        {
+            checkSaveSeedData.Enabled = (textBoxMiscSeed.Text.Length > 0);
+        }
     }
 }

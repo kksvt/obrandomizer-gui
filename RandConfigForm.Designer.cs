@@ -33,6 +33,7 @@
             tabMiscSettings = new System.Windows.Forms.TabPage();
             groupMisc = new System.Windows.Forms.GroupBox();
             groupMiscSeed = new System.Windows.Forms.GroupBox();
+            checkSaveSeedData = new System.Windows.Forms.CheckBox();
             buttonRandSeed = new System.Windows.Forms.Button();
             textBoxMiscSeed = new System.Windows.Forms.TextBox();
             groupMiscPatches = new System.Windows.Forms.GroupBox();
@@ -213,25 +214,37 @@
             groupMisc.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupMisc.Name = "groupMisc";
             groupMisc.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupMisc.Size = new System.Drawing.Size(765, 215);
+            groupMisc.Size = new System.Drawing.Size(765, 232);
             groupMisc.TabIndex = 0;
             groupMisc.TabStop = false;
             groupMisc.Text = "Misc";
             // 
             // groupMiscSeed
             // 
+            groupMiscSeed.Controls.Add(checkSaveSeedData);
             groupMiscSeed.Controls.Add(buttonRandSeed);
             groupMiscSeed.Controls.Add(textBoxMiscSeed);
             groupMiscSeed.Location = new System.Drawing.Point(7, 23);
             groupMiscSeed.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupMiscSeed.Name = "groupMiscSeed";
             groupMiscSeed.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            groupMiscSeed.Size = new System.Drawing.Size(219, 72);
+            groupMiscSeed.Size = new System.Drawing.Size(219, 88);
             groupMiscSeed.TabIndex = 7;
             groupMiscSeed.TabStop = false;
             groupMiscSeed.Tag = "";
             groupMiscSeed.Text = "Seed";
             groupMiscSeed.MouseHover += groupMiscSeed_MouseHover;
+            // 
+            // checkSaveSeedData
+            // 
+            checkSaveSeedData.AutoSize = true;
+            checkSaveSeedData.Enabled = false;
+            checkSaveSeedData.Location = new System.Drawing.Point(7, 55);
+            checkSaveSeedData.Name = "checkSaveSeedData";
+            checkSaveSeedData.Size = new System.Drawing.Size(101, 17);
+            checkSaveSeedData.TabIndex = 2;
+            checkSaveSeedData.Text = "Save seed data";
+            checkSaveSeedData.UseVisualStyleBackColor = true;
             // 
             // buttonRandSeed
             // 
@@ -251,12 +264,13 @@
             textBoxMiscSeed.Name = "textBoxMiscSeed";
             textBoxMiscSeed.Size = new System.Drawing.Size(116, 20);
             textBoxMiscSeed.TabIndex = 0;
+            textBoxMiscSeed.TextChanged += textBoxMiscSeed_TextChanged;
             // 
             // groupMiscPatches
             // 
             groupMiscPatches.Controls.Add(checkInvalidCreatureDataPatch);
             groupMiscPatches.Controls.Add(checkInvalidTexturePatch);
-            groupMiscPatches.Location = new System.Drawing.Point(274, 102);
+            groupMiscPatches.Location = new System.Drawing.Point(274, 117);
             groupMiscPatches.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupMiscPatches.Name = "groupMiscPatches";
             groupMiscPatches.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -353,7 +367,7 @@
             // 
             groupMiscQuestObjects.Controls.Add(radioExcludeQuestYes);
             groupMiscQuestObjects.Controls.Add(radioExcludeQuestNo);
-            groupMiscQuestObjects.Location = new System.Drawing.Point(7, 102);
+            groupMiscQuestObjects.Location = new System.Drawing.Point(7, 117);
             groupMiscQuestObjects.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupMiscQuestObjects.Name = "groupMiscQuestObjects";
             groupMiscQuestObjects.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -394,7 +408,7 @@
             groupMiscSpells.Controls.Add(radioSpells2);
             groupMiscSpells.Controls.Add(radioSpellsDisabled);
             groupMiscSpells.Controls.Add(radioSpells1);
-            groupMiscSpells.Location = new System.Drawing.Point(538, 102);
+            groupMiscSpells.Location = new System.Drawing.Point(538, 117);
             groupMiscSpells.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             groupMiscSpells.Name = "groupMiscSpells";
             groupMiscSpells.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -1369,6 +1383,7 @@
             textBoxHelp.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             textBoxHelp.Multiline = true;
             textBoxHelp.Name = "textBoxHelp";
+            textBoxHelp.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             textBoxHelp.Size = new System.Drawing.Size(300, 292);
             textBoxHelp.TabIndex = 1;
             textBoxHelp.Text = "Hover over an element to display help";
@@ -1662,6 +1677,7 @@
         private System.Windows.Forms.RadioButton radioStatAll;
         private System.Windows.Forms.RadioButton radioStatNonEssential;
         private System.Windows.Forms.RadioButton radioStatDisabled;
+        private System.Windows.Forms.CheckBox checkSaveSeedData;
     }
 }
 
