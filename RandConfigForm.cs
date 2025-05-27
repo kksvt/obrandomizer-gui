@@ -91,7 +91,7 @@ namespace obrandomizer_gui
 
         private void radioRestoreActorAttribYes_CheckedChanged(object sender, EventArgs e)
         {
-            groupNPCRandomizeAttributes.Enabled = !radioRestoreActorAttribYes.Checked;
+            groupNPCRandomizeStats.Enabled = groupNPCRandomizeAttributes.Enabled = !radioRestoreActorAttribYes.Checked;
         }
 
         private void buttonRandSeed_Click(object sender, EventArgs e)
