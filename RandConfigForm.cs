@@ -907,7 +907,7 @@ namespace obrandomizer_gui
             textBoxHelp.Text = "Controls responsible for template management.\r\n\r\nThe game loads randomizer's settings from the Data/Randomizer.cfg file, " +
                 "and the template system allows you to keep multiple config files on standby.\r\n\r\n" +
                 "For example, selecting \"Chaos.cfg\" from the dropdown box and pressing \"Load template\" will load the chaos settings into the GUI. " +
-                "Then, pressing \"Save current settings to Randomizer.cfg\" will copy all settings from the \"Chaos.cfg\" template to the main config file, " +
+                "Then, pressing \"Save to main config\" will copy all settings from the \"Chaos.cfg\" template to the main config file, " +
                 "which will be used by the game.";
         }
 
