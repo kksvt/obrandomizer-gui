@@ -1287,6 +1287,7 @@
             groupDontAddToRandomizerLists.TabIndex = 3;
             groupDontAddToRandomizerLists.TabStop = false;
             groupDontAddToRandomizerLists.Text = "Don't add to lists";
+            groupDontAddToRandomizerLists.MouseHover += textBoxDontAddToLists_MouseHover;
             // 
             // buttonDontAddToLists
             // 
@@ -1325,6 +1326,7 @@
             groupDontRandomize.TabIndex = 2;
             groupDontRandomize.TabStop = false;
             groupDontRandomize.Text = "Don't randomize";
+            groupDontRandomize.MouseHover += textBoxDontRandomize_MouseHover;
             // 
             // buttonDontRandomizePaste
             // 
