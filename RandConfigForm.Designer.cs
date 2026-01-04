@@ -1373,7 +1373,7 @@
             listMods.Location = new System.Drawing.Point(7, 22);
             listMods.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             listMods.Name = "listMods";
-            listMods.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            listMods.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             listMods.Size = new System.Drawing.Size(219, 259);
             listMods.Sorted = true;
             listMods.TabIndex = 2;
