@@ -233,7 +233,7 @@
             groupMiscSeed.TabStop = false;
             groupMiscSeed.Tag = "";
             groupMiscSeed.Text = "Seed";
-            groupMiscSeed.MouseHover += groupMiscSeed_MouseHover;
+            groupMiscSeed.MouseEnter += groupMiscSeed_MouseEnter;
             // 
             // checkSaveSeedData
             // 
@@ -278,7 +278,7 @@
             groupMiscPatches.TabIndex = 6;
             groupMiscPatches.TabStop = false;
             groupMiscPatches.Text = "Enable anti-crash patches";
-            groupMiscPatches.MouseHover += groupMiscPatches_MouseHover;
+            groupMiscPatches.MouseEnter += groupMiscPatches_MouseEnter;
             // 
             // checkInvalidCreatureDataPatch
             // 
@@ -313,7 +313,7 @@
             groupMiscHitEffect.TabIndex = 5;
             groupMiscHitEffect.TabStop = false;
             groupMiscHitEffect.Text = "Hit effect chance (%)";
-            groupMiscHitEffect.MouseHover += groupMiscHitEffect_MouseHover;
+            groupMiscHitEffect.MouseEnter += groupMiscHitEffect_MouseEnter;
             // 
             // numericHitEffect
             // 
@@ -337,7 +337,7 @@
             groupMiscDelayStart.TabIndex = 4;
             groupMiscDelayStart.TabStop = false;
             groupMiscDelayStart.Text = "Delay start";
-            groupMiscDelayStart.MouseHover += groupMiscDelayStart_MouseHover;
+            groupMiscDelayStart.MouseEnter += groupMiscDelayStart_MouseEnter;
             // 
             // radioDelayStartNo
             // 
@@ -375,7 +375,7 @@
             groupMiscQuestObjects.TabIndex = 3;
             groupMiscQuestObjects.TabStop = false;
             groupMiscQuestObjects.Text = "Exclude quest objects";
-            groupMiscQuestObjects.MouseHover += groupMiscQuestObjects_MouseHover;
+            groupMiscQuestObjects.MouseEnter += groupMiscQuestObjects_MouseEnter;
             // 
             // radioExcludeQuestYes
             // 
@@ -416,7 +416,7 @@
             groupMiscSpells.TabIndex = 0;
             groupMiscSpells.TabStop = false;
             groupMiscSpells.Text = "Spell randomization";
-            groupMiscSpells.MouseHover += groupMiscSpells_MouseHover;
+            groupMiscSpells.MouseEnter += groupMiscSpells_MouseEnter;
             // 
             // radioSpells2
             // 
@@ -499,7 +499,7 @@
             groupLootExcludeUnplayableItems.TabIndex = 17;
             groupLootExcludeUnplayableItems.TabStop = false;
             groupLootExcludeUnplayableItems.Text = "Exclude unplayable items";
-            groupLootExcludeUnplayableItems.MouseHover += groupLootExcludeUnplayableItems_MouseHover;
+            groupLootExcludeUnplayableItems.MouseEnter += groupLootExcludeUnplayableItems_MouseEnter;
             // 
             // radioLootExcludeUnplayableYes
             // 
@@ -539,7 +539,7 @@
             groupLootGold.TabIndex = 16;
             groupLootGold.TabStop = false;
             groupLootGold.Text = "Gold";
-            groupLootGold.MouseHover += groupLootGold_MouseHover;
+            groupLootGold.MouseEnter += groupLootGold_MouseEnter;
             // 
             // radioLootRandGoldNo
             // 
@@ -578,7 +578,7 @@
             groupLootDeathItem.TabIndex = 15;
             groupLootDeathItem.TabStop = false;
             groupLootDeathItem.Text = "Death item randomization";
-            groupLootDeathItem.MouseHover += groupLootDeathItem_MouseHover;
+            groupLootDeathItem.MouseEnter += groupLootDeathItem_MouseEnter;
             // 
             // radioDeathItemAggressive
             // 
@@ -628,7 +628,7 @@
             groupLootAddItem.TabIndex = 14;
             groupLootAddItem.TabStop = false;
             groupLootAddItem.Text = "AddItem randomization";
-            groupLootAddItem.MouseHover += groupLootAddItem_MouseHover;
+            groupLootAddItem.MouseEnter += groupLootAddItem_MouseEnter;
             // 
             // radioAddItemAggressive
             // 
@@ -678,7 +678,7 @@
             groupLootWorldItem.TabIndex = 13;
             groupLootWorldItem.TabStop = false;
             groupLootWorldItem.Text = "World item randomization";
-            groupLootWorldItem.MouseHover += groupLootWorldItem_MouseHover;
+            groupLootWorldItem.MouseEnter += groupLootWorldItem_MouseEnter;
             // 
             // radioWorldItemAggressive
             // 
@@ -728,7 +728,7 @@
             groupLootRandChestInventory.TabIndex = 12;
             groupLootRandChestInventory.TabStop = false;
             groupLootRandChestInventory.Text = "Container inventory randomization";
-            groupLootRandChestInventory.MouseHover += groupLootRandChestInventory_MouseHover;
+            groupLootRandChestInventory.MouseEnter += groupLootRandChestInventory_MouseEnter;
             // 
             // radioRandChestInventoryAggressive
             // 
@@ -778,7 +778,7 @@
             groupLootRandActorInventory.TabIndex = 11;
             groupLootRandActorInventory.TabStop = false;
             groupLootRandActorInventory.Text = "Actor inventory randomization";
-            groupLootRandActorInventory.MouseHover += groupLootRandActorInventory_MouseHover;
+            groupLootRandActorInventory.MouseEnter += groupLootRandActorInventory_MouseEnter;
             // 
             // radioRandActorInventoryAggressive
             // 
@@ -856,7 +856,7 @@
             groupNPCRandomizeStats.TabIndex = 10;
             groupNPCRandomizeStats.TabStop = false;
             groupNPCRandomizeStats.Text = "Actor stat randomization";
-            groupNPCRandomizeStats.MouseHover += groupNPCRandomizeStats_MouseHover;
+            groupNPCRandomizeStats.MouseEnter += groupNPCRandomizeStats_MouseEnter;
             // 
             // radioStatAll
             // 
@@ -905,7 +905,7 @@
             groupNPCActorScaling.TabIndex = 9;
             groupNPCActorScaling.TabStop = false;
             groupNPCActorScaling.Text = "Actor size scaling";
-            groupNPCActorScaling.MouseHover += groupNPCActorScaling_MouseHover;
+            groupNPCActorScaling.MouseEnter += groupNPCActorScaling_MouseEnter;
             // 
             // checkActorScaling
             // 
@@ -982,7 +982,7 @@
             groupNPCRestoreAttributes.TabIndex = 8;
             groupNPCRestoreAttributes.TabStop = false;
             groupNPCRestoreAttributes.Text = "Actor attribute restoration";
-            groupNPCRestoreAttributes.MouseHover += groupNPCRestoreAttributes_MouseHover;
+            groupNPCRestoreAttributes.MouseEnter += groupNPCRestoreAttributes_MouseEnter;
             // 
             // radioRestoreActorAttribNo
             // 
@@ -1022,7 +1022,7 @@
             groupNPCRandomizeAttributes.TabIndex = 7;
             groupNPCRandomizeAttributes.TabStop = false;
             groupNPCRandomizeAttributes.Text = "Actor attribute randomization";
-            groupNPCRandomizeAttributes.MouseHover += groupNPCRandomizeAttributes_MouseHover;
+            groupNPCRandomizeAttributes.MouseEnter += groupNPCRandomizeAttributes_MouseEnter;
             // 
             // radioAttribAll
             // 
@@ -1070,7 +1070,7 @@
             groupNPCVampire.TabIndex = 6;
             groupNPCVampire.TabStop = false;
             groupNPCVampire.Text = "Vampirism chance (%)";
-            groupNPCVampire.MouseHover += groupNPCVampire_MouseHover;
+            groupNPCVampire.MouseEnter += groupNPCVampire_MouseEnter;
             // 
             // numericVampire
             // 
@@ -1120,7 +1120,7 @@
             groupUseEssentialCreatures.TabIndex = 12;
             groupUseEssentialCreatures.TabStop = false;
             groupUseEssentialCreatures.Text = "Use essential creatures";
-            groupUseEssentialCreatures.MouseHover += groupUseEssentialCreatures_MouseHover;
+            groupUseEssentialCreatures.MouseEnter += groupUseEssentialCreatures_MouseEnter;
             // 
             // radioUseEssentialCreaturesYes
             // 
@@ -1160,7 +1160,7 @@
             groupExcludeHorses.TabIndex = 11;
             groupExcludeHorses.TabStop = false;
             groupExcludeHorses.Text = "Exclude horses";
-            groupExcludeHorses.MouseHover += groupExcludeHorses_MouseHover;
+            groupExcludeHorses.MouseEnter += groupExcludeHorses_MouseEnter;
             // 
             // radioExcludeHorsesYes
             // 
@@ -1201,7 +1201,7 @@
             groupMiscRandCreatures.TabIndex = 10;
             groupMiscRandCreatures.TabStop = false;
             groupMiscRandCreatures.Text = "Creature randomziation";
-            groupMiscRandCreatures.MouseHover += groupMiscRandCreatures_MouseHover;
+            groupMiscRandCreatures.MouseEnter += groupMiscRandCreatures_MouseEnter;
             // 
             // radioRandCreaturesUnstable
             // 
@@ -1287,7 +1287,7 @@
             groupDontAddToRandomizerLists.TabIndex = 3;
             groupDontAddToRandomizerLists.TabStop = false;
             groupDontAddToRandomizerLists.Text = "Don't add to lists";
-            groupDontAddToRandomizerLists.MouseHover += textBoxDontAddToLists_MouseHover;
+            groupDontAddToRandomizerLists.MouseEnter += textBoxDontAddToLists_MouseEnter;
             // 
             // buttonDontAddToLists
             // 
@@ -1299,7 +1299,7 @@
             buttonDontAddToLists.Text = "Paste selection from \"Your mods\"";
             buttonDontAddToLists.UseVisualStyleBackColor = true;
             buttonDontAddToLists.Click += buttonDontAddToLists_Click;
-            buttonDontAddToLists.MouseHover += buttonDontAddToLists_MouseHover;
+            buttonDontAddToLists.MouseEnter += buttonDontAddToLists_MouseEnter;
             // 
             // textBoxDontAddToLists
             // 
@@ -1312,7 +1312,7 @@
             textBoxDontAddToLists.TabIndex = 2;
             textBoxDontAddToLists.DragDrop += textBoxDontAddToLists_DragDrop;
             textBoxDontAddToLists.DragEnter += listDontRandomize_DragEnter;
-            textBoxDontAddToLists.MouseHover += textBoxDontAddToLists_MouseHover;
+            textBoxDontAddToLists.MouseEnter += textBoxDontAddToLists_MouseEnter;
             // 
             // groupDontRandomize
             // 
@@ -1326,7 +1326,7 @@
             groupDontRandomize.TabIndex = 2;
             groupDontRandomize.TabStop = false;
             groupDontRandomize.Text = "Don't randomize";
-            groupDontRandomize.MouseHover += textBoxDontRandomize_MouseHover;
+            groupDontRandomize.MouseEnter += textBoxDontRandomize_MouseEnter;
             // 
             // buttonDontRandomizePaste
             // 
@@ -1338,7 +1338,7 @@
             buttonDontRandomizePaste.Text = "Paste selection from \"Your mods\"";
             buttonDontRandomizePaste.UseVisualStyleBackColor = true;
             buttonDontRandomizePaste.Click += buttonDontRandomizePaste_Click;
-            buttonDontRandomizePaste.MouseHover += buttonDontRandomizePaste_MouseHover;
+            buttonDontRandomizePaste.MouseEnter += buttonDontRandomizePaste_MouseEnter;
             // 
             // textBoxDontRandomize
             // 
@@ -1351,7 +1351,7 @@
             textBoxDontRandomize.TabIndex = 0;
             textBoxDontRandomize.DragDrop += listDontRandomize_DragDrop;
             textBoxDontRandomize.DragEnter += listDontRandomize_DragEnter;
-            textBoxDontRandomize.MouseHover += textBoxDontRandomize_MouseHover;
+            textBoxDontRandomize.MouseEnter += textBoxDontRandomize_MouseEnter;
             // 
             // groupCurrentMods
             // 
@@ -1373,11 +1373,11 @@
             listMods.Location = new System.Drawing.Point(7, 22);
             listMods.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             listMods.Name = "listMods";
-            listMods.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
+            listMods.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             listMods.Size = new System.Drawing.Size(219, 259);
             listMods.Sorted = true;
             listMods.TabIndex = 2;
-            listMods.MouseHover += listMods_MouseHover;
+            listMods.MouseEnter += listMods_MouseEnter;
             // 
             // textBoxHelp
             // 
@@ -1400,7 +1400,7 @@
             buttonSave.Text = "Save to main config";
             buttonSave.UseVisualStyleBackColor = true;
             buttonSave.Click += buttonSave_Click;
-            buttonSave.MouseHover += buttonSave_MouseHover;
+            buttonSave.MouseEnter += buttonSave_MouseEnter;
             // 
             // buttonLoad
             // 
@@ -1412,7 +1412,7 @@
             buttonLoad.Text = "Load from main config";
             buttonLoad.UseVisualStyleBackColor = true;
             buttonLoad.Click += buttonLoad_Click;
-            buttonLoad.MouseHover += buttonLoad_MouseHover;
+            buttonLoad.MouseEnter += buttonLoad_MouseEnter;
             // 
             // errorProvider
             // 
@@ -1426,7 +1426,7 @@
             comboTemplates.Name = "comboTemplates";
             comboTemplates.Size = new System.Drawing.Size(231, 23);
             comboTemplates.TabIndex = 4;
-            comboTemplates.MouseHover += labelTemplates_MouseHover;
+            comboTemplates.MouseEnter += labelTemplates_MouseEnter;
             // 
             // labelTemplates
             // 
@@ -1437,7 +1437,7 @@
             labelTemplates.Size = new System.Drawing.Size(59, 15);
             labelTemplates.TabIndex = 5;
             labelTemplates.Text = "Template:";
-            labelTemplates.MouseHover += labelTemplates_MouseHover;
+            labelTemplates.MouseEnter += labelTemplates_MouseEnter;
             // 
             // buttonSaveTemplate
             // 
@@ -1449,7 +1449,7 @@
             buttonSaveTemplate.Text = "Save current settings to template";
             buttonSaveTemplate.UseVisualStyleBackColor = true;
             buttonSaveTemplate.Click += buttonSaveTemplate_Click;
-            buttonSaveTemplate.MouseHover += labelTemplates_MouseHover;
+            buttonSaveTemplate.MouseEnter += labelTemplates_MouseEnter;
             // 
             // buttonLoadTemplate
             // 
@@ -1461,7 +1461,7 @@
             buttonLoadTemplate.Text = "Load template";
             buttonLoadTemplate.UseVisualStyleBackColor = true;
             buttonLoadTemplate.Click += buttonLoadTemplate_Click;
-            buttonLoadTemplate.MouseHover += labelTemplates_MouseHover;
+            buttonLoadTemplate.MouseEnter += labelTemplates_MouseEnter;
             // 
             // buttonDeleteTemplate
             // 
@@ -1473,7 +1473,7 @@
             buttonDeleteTemplate.Text = "Delete template";
             buttonDeleteTemplate.UseVisualStyleBackColor = true;
             buttonDeleteTemplate.Click += buttonDeleteTemplate_Click;
-            buttonDeleteTemplate.MouseHover += labelTemplates_MouseHover;
+            buttonDeleteTemplate.MouseEnter += labelTemplates_MouseEnter;
             // 
             // labelLastLoaded
             // 

@@ -618,7 +618,7 @@ namespace obrandomizer_gui
             }
         }
 
-        private void groupMiscSeed_MouseHover(object sender, EventArgs e)
+        private void groupMiscSeed_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Since the information about the randomization of world items, non-leveled list creatures " +
                 "and spells is not stored in the save file, they will get re-randomized every time you launch the game.\r\n\r\n" +
@@ -631,7 +631,7 @@ namespace obrandomizer_gui
                 "experimental feature.";
         }
 
-        private void groupMiscQuestObjects_MouseHover(object sender, EventArgs e)
+        private void groupMiscQuestObjects_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the inclusion of quest and scripted items in the randomizer's lists.\r\n\r\n" +
                 "Picking up quest items often prompts the game to update the status of the associated quest, " +
@@ -640,27 +640,27 @@ namespace obrandomizer_gui
                 "without having to worry about them breaking.";
         }
 
-        private void groupMiscDelayStart_MouseHover(object sender, EventArgs e)
+        private void groupMiscDelayStart_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "If this setting is enabled, then inventory and attribute randomization will not kick in " +
                 "until the first ambush in the tutorial (Charactergen reaches stage 20).";
         }
 
-        private void groupMiscPatches_MouseHover(object sender, EventArgs e)
+        private void groupMiscPatches_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls whether various anti-crash patches are enabled. Should you find " +
                 "that your save crashes every time you load it, enable either of these settings (or both) and see " +
                 "if that helps.";
         }
 
-        private void groupMiscHitEffect_MouseHover(object sender, EventArgs e)
+        private void groupMiscHitEffect_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "The chance for each hit to apply one of the following random effects:\r\n" +
                 "- fire,\r\n- frost,\r\n- shock,\r\n- demoralize,\r\n- burden,\r\n- frenzy,\r\n- paralysis,\r\n- push,\r\n- heal," +
                 "\r\n- disintegrate,\r\n- drain fatigue";
         }
 
-        private void groupMiscSpells_MouseHover(object sender, EventArgs e)
+        private void groupMiscSpells_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Spell randomization setting.\r\n\r\n- Disabled - don't enable spell randomization,\r\n\r\n" +
                 "- Randomize spell, but not school - every spell will get randomized into a spell of the same school (for example " +
@@ -668,7 +668,7 @@ namespace obrandomizer_gui
                 " get randomized into any spell, regardless of the school.";
         }
 
-        private void groupLootRandActorInventory_MouseHover(object sender, EventArgs e)
+        private void groupLootRandActorInventory_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of actors' inventories.\r\n\r\n- Disabled - don't randomize,\r\n\r\n" +
                 "- Enabled, normal - every item in an NPC's inventory will get randomized into an item of the same type (for example a helmet " +
@@ -676,7 +676,7 @@ namespace obrandomizer_gui
                 "of their pre-randomized inventory.";
         }
 
-        private void groupLootRandChestInventory_MouseHover(object sender, EventArgs e)
+        private void groupLootRandChestInventory_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of containers' inventories.\r\n\r\n- Disabled - don't randomize,\r\n\r\n" +
                 "- Enabled, normal - every item in a container's inventory will get randomized into an item of the same type (for example a helmet " +
@@ -684,7 +684,7 @@ namespace obrandomizer_gui
                 "of their pre-randomized inventory.";
         }
 
-        private void groupLootWorldItem_MouseHover(object sender, EventArgs e)
+        private void groupLootWorldItem_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of items freely spawned in the world (such as a bowl lying on a table). Note that " +
                 "world item randomization is not stored in your save file, so use a fixed seed if you wish for them to be randomized into the same items every time." +
@@ -692,7 +692,7 @@ namespace obrandomizer_gui
                 "may only get randomized into another helmet),\r\n\r\n- Enabled, aggressive - every item will get randomized into an item of any type.";
         }
 
-        private void groupLootAddItem_MouseHover(object sender, EventArgs e)
+        private void groupLootAddItem_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of items given to the player through scripts, such as \"The Warp in the West\" book, which " +
                 "one receives from Brother Piner.\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Enabled, normal - every item will get randomized into an item of the " +
@@ -700,49 +700,49 @@ namespace obrandomizer_gui
                 "item of any type.";
         }
 
-        private void groupLootDeathItem_MouseHover(object sender, EventArgs e)
+        private void groupLootDeathItem_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of items placed in NPCs' inventories upon death, such as \"Daedra Hearts\" for Dremoras." +
                 "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Enabled, normal - every item will get randomized into an item of the same type (for example a helmet " +
                 "may only get randomized into another helmet),\r\n\r\n- Enabled, aggressive - every item will get randomized into an item of any type.";
         }
 
-        private void groupLootGold_MouseHover(object sender, EventArgs e)
+        private void groupLootGold_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting determines how the randomizer approaches randomizing gold.\r\n\r\n- Only randomize quantity - only the quantity of gold " +
                 "will be randomized.\r\n\r\n- Randomize into another item - gold will be treated just like every other regular item.";
         }
 
-        private void groupNPCRandomizeAttributes_MouseHover(object sender, EventArgs e)
+        private void groupNPCRandomizeAttributes_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of actor parameters. The parameters include aggression, confidence and responsibility." +
                 "\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " +
                 "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.";
         }
-        private void groupNPCRandomizeStats_MouseHover(object sender, EventArgs e)
+        private void groupNPCRandomizeStats_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the randomization of actor stats. The parameters include basic attributes (such as strength, dexterity, " +
                 "endurance) and skills (blade, blunt, block...).\r\n\r\n- Disabled - don't randomize,\r\n\r\n- Only for non-essential actors - randomize only actors without the essential " +
                 "flag turned on,\r\n\r\n- Enabled for all - randomize all actors.";
         }
 
-        private void groupNPCRestoreAttributes_MouseHover(object sender, EventArgs e)
+        private void groupNPCRestoreAttributes_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting restores the previously randomized actor parameters.";
         }
 
-        private void groupNPCVampire_MouseHover(object sender, EventArgs e)
+        private void groupNPCVampire_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the chance for an actor to be turned into a vampire.";
         }
 
-        private void groupNPCActorScaling_MouseHover(object sender, EventArgs e)
+        private void groupNPCActorScaling_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls the actor scaling. If enabled, every actor's size will be multiplied by a random number between Min and Max.\r\n\r\n" +
                 "For example, if you wish each actor to be randomized into a size at least twice as small and at most twice as big as usual, set Min to 0.5 and Max to 2.0.";
         }
 
-        private void groupMiscRandCreatures_MouseHover(object sender, EventArgs e)
+        private void groupMiscRandCreatures_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls creature randomization. Note that creatures spawned from leveled lists are randomized only on spawn AND stored " +
                 "in the save file, whereas other creatures are randomized every time you launch the game, so use a fixed seed if you wish them to be randomized into " +
@@ -751,20 +751,20 @@ namespace obrandomizer_gui
                 "and it is recommended that you don't enable it.";
         }
 
-        private void groupUseEssentialCreatures_MouseHover(object sender, EventArgs e)
+        private void groupUseEssentialCreatures_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "This setting controls whether essential creatures will be added to the randomizer's lists. Essential creatures cannot be killed, " +
                 "therefore enabling this option may prevent you from completing quests that require you to kill some creatures (or force you to use cheats).";
         }
 
-        private void groupExcludeHorses_MouseHover(object sender, EventArgs e)
+        private void groupExcludeHorses_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "If disabled, this setting will randomize horses into other creatures and vice versa. I firmly believe it strongly contributes " +
                 "to memory issues, and it is recommended that you keep it disabled. If you don't, you may want to check the \"Creature data patch\" in the " +
                 "\"Enable anti-crash patches\" group.";
         }
 
-        private void groupLootExcludeUnplayableItems_MouseHover(object sender, EventArgs e)
+        private void groupLootExcludeUnplayableItems_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "If enabled, this setting will cause items marked as unplayable to be excluded from the randomization process.\r\n\r\n" +
                 "In vanilla, these are typically items that the game does not want the player to wear for plot reasons (such as Emperor Uriel Septim's robe), " +
@@ -902,7 +902,7 @@ namespace obrandomizer_gui
             }
         }
 
-        private void labelTemplates_MouseHover(object sender, EventArgs e)
+        private void labelTemplates_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Controls responsible for template management.\r\n\r\nThe game loads randomizer's settings from the Data/Randomizer.cfg file, " +
                 "and the template system allows you to keep multiple config files on standby.\r\n\r\n" +
@@ -911,12 +911,12 @@ namespace obrandomizer_gui
                 "which will be used by the game.";
         }
 
-        private void buttonLoad_MouseHover(object sender, EventArgs e)
+        private void buttonLoad_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Loads settings from the main config file (Data/Randomizer.cfg).";
         }
 
-        private void buttonSave_MouseHover(object sender, EventArgs e)
+        private void buttonSave_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Saves current settings to the main config file (Data/Randomizer.cfg).";
         }
@@ -1005,30 +1005,30 @@ namespace obrandomizer_gui
             LoadExcludes("Data/RandomizerSkip.cfg");
         }
 
-        private void textBoxDontRandomize_MouseHover(object sender, EventArgs e)
+        private void textBoxDontRandomize_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Objects from plugin files in this list will not be randomized.";
         }
 
-        private void listMods_MouseHover(object sender, EventArgs e)
+        private void listMods_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "All .esp and .esm files from your Oblivion/Data directory should be listed here.\r\n\r\n" +
                 "If this list is empty, then it indicates that you have not installed the randomizer properly.";
         }
 
-        private void buttonDontRandomizePaste_MouseHover(object sender, EventArgs e)
+        private void buttonDontRandomizePaste_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Pressing this button will copy all selected items from \"Your mods\" and paste them here.";
         }
 
-        private void textBoxDontAddToLists_MouseHover(object sender, EventArgs e)
+        private void textBoxDontAddToLists_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Objects from plugin files in this list will not be added to the randomizer's pool.\r\n\r\n" +
                 "For example, if you are playing a total conversion mod, you may want the randomizer not to randomize objects " +
                 "into vanilla Oblivion ones, thus you ought to put Oblivion.esm on this list.";
         }
 
-        private void buttonDontAddToLists_MouseHover(object sender, EventArgs e)
+        private void buttonDontAddToLists_MouseEnter(object sender, EventArgs e)
         {
             textBoxHelp.Text = "Pressing this button will copy all selected items from \"Your mods\" and paste them here.";
         }
